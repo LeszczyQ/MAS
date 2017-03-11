@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MASTEST
+{
+    [Serializable]
+    public class ObjectPlus
+    {
+        private static Hashtable extensje = new Hashtable();
+
+        public ObjectPlus()
+        {
+            List<Object> ekstensja = null;
+            Type klasa = this.GetType();
+
+            if (ObjectPlus.extensje.ContainsKey(klasa))
+            {
+                ekstensja = (List<Object>)ObjectPlus.extensje[klasa];
+            }
+            else
+            {
+                ekstensja = new List<object>();
+                ObjectPlus.extensje.Add(klasa, ekstensja);
+            }
+
+            ekstensja.Add(this);
+        }
+
+        public static void zapiszEkstensje()
+        {
+            FileStream stream = File.Create("ekstensje.data");
+            var formatter = new BinaryFormatter();
+            formatter.Serialize(stream, ObjectPlus.extensje);
+            stream.Close();
+
+        }
+        public static void odczytajEkstensje()
+        {
+            FileStream stream = File.OpenRead("ekstensje.data");
+            var formatter = new BinaryFormatter();
+            ObjectPlus.extensje = (Hashtable)formatter.Deserialize(stream);
+            stream.Close();
+
+        }
+
+        public static void pokazEkstensje(Type klasa)
+        {
+            List<Object> ekstensja = null;
+            if (ObjectPlus.extensje.ContainsKey(klasa))
+            {
+                ekstensja = (List<Object>)ObjectPlus.extensje[klasa];
+            }
+            else
+            {
+                throw new Exception("Nieznana klasa" + klasa.Name);
+            }
+            Console.WriteLine("\n------------------------------------------\nekstensja klasy: " + klasa.Name);
+            foreach (Object obiekt in ekstensja)
+            {
+                Console.WriteLine(obiekt.ToString());
+            }
+        }
+
+    }
+}
