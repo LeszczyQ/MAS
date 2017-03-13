@@ -17,7 +17,7 @@ namespace MASTEST
     }
 
     [Serializable]
-    class ZgloszenieSerwisowe
+    class ZgloszenieSerwisowe : ObjectPlusPlus
     {
         private static uint licznikZgloszen;
         private uint numerZgłoszenia;
@@ -86,6 +86,12 @@ namespace MASTEST
             {
                 return "Zgłoszenie w trakcie realizacji";
             }
+        }
+
+        override 
+        public string ToString()
+        {
+            return "Zgłoszenie : " + numerZgłoszenia + " z dnia " + DataToString(dataZgloszenia) + " status [" + status + "]";
         }
 
         class NaprawaSerwisowa

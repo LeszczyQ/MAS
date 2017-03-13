@@ -22,9 +22,26 @@ namespace MASTEST
             this.miasto = miasto;
         }
 
-        public static void pokazEkstensje()
+        public string Ulica
         {
-            ObjectPlus.pokazEkstensje(typeof(Adres));
+            get { return ulica; }
+            set { ulica = value; }
+        }
+
+        public string Numer
+        {
+            get { return numer; }
+            set { numer = value; }
+        }
+        public string KodPocztowy
+        {
+            get { return kodPocztowy; }
+            set { kodPocztowy = value; }
+        }
+        public string Miasto
+        {
+            get { return miasto; }
+            set { miasto = value; }
         }
 
         override

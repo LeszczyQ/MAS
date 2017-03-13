@@ -35,12 +35,12 @@ namespace MASTEST
 
         public void SetStawkaZaWizyte(double stawka)
         {
-            this.stawkaZaWizyte = stawka;
+            stawkaZaWizyte = stawka;
         }
 
-        public static void ZwiększPremie(double procent)// metoda klasowa
+        public static void ZwiększPremie(double kwota)// metoda klasowa
         {
-            premia = premia + premia * procent* 0.01;
+            premia = premia + kwota;
         }
 
         public static void pokazEkstensje()
@@ -49,18 +49,12 @@ namespace MASTEST
         }
         public void DodajObslugiwanyKodPocztowy(string kodPocztowy)
         {
-            if (obslugiwaneKodyPocztowe.Count >= 4)
-            {
-                new Exception(" Można dodać maksymalnie 3 numery kontaktowe");
-            }
-            else {
-                this.obslugiwaneKodyPocztowe.Add(kodPocztowy);
-            }
+            obslugiwaneKodyPocztowe.Add(kodPocztowy);
         }
 
         public List<string> GetObsługiwaneKodyPocztowe()
         {
-            return this.obslugiwaneKodyPocztowe;
+            return obslugiwaneKodyPocztowe;
         }
 
         public string ObsługiwaneKodyToString()
@@ -74,15 +68,16 @@ namespace MASTEST
             if (obslugiwaneKodyPocztowe != null)
                 return obslugiwaneKodyPocztowe.Contains(kodPocztowy);
             else return false;
+
         }
 
-        
+
 
 
 
         public override string ToString()
         {
-            return base.ToString() + "\nObsługiwane kody pocztowe : \n" + ObsługiwaneKodyToString()+ "\n premia :"+ premia+"\n";
+            return base.ToString() + "\nObsługiwane kody pocztowe : \n" + ObsługiwaneKodyToString() + "\n premia :" + premia + "\n";
         }
     }
 }

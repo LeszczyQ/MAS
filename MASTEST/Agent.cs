@@ -58,8 +58,11 @@ namespace MASTEST
 
         }
 
-        
 
-        
+        public override string ToString()
+        {
+            return base.ToString() + "Podstawa do premii : " + podstawaDoPremii + "\n";
+        }
+
     }
 }

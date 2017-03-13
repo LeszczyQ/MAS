@@ -73,14 +73,14 @@ namespace MASTEST
         override
             public string ToString()
         {
-
+            string tablicaNumerow = string.Join(", ", numeryKontaktowe.ToArray());
             if (adresEmail != null)
             {
-                return this.imie + " " + this.nazwisko + " " + string.Join(", ", this.numeryKontaktowe.ToArray()) +" "+ this.adresEmail;
+                return imie + " " + nazwisko + " " + tablicaNumerow +" "+ this.adresEmail;
             }
             else
             {
-                return this.imie + " " + this.nazwisko + " " + this.numeryKontaktowe.ToString() + " brak adresu email";
+                return imie + " " + nazwisko + " " + tablicaNumerow + " brak adresu email";
             }
         }
     } 

@@ -10,9 +10,13 @@ namespace MASTEST
     [Serializable]
     public class ObjectPlusPlus : ObjectPlus
     {
+        //Przechowuje informacje o wszystkich powiazaniach tego obiekt
         private Hashtable powiazania = new Hashtable();
+
+        //Przechowuje informacje o wszystkich czesciach powiazanych z ktorymkolwiek z obiektow.
         private HashSet<ObjectPlusPlus> wszystkieCzesci = new HashSet<ObjectPlusPlus>();
 
+        //konstruktor
         public ObjectPlusPlus() : base()
         {
             
@@ -86,7 +90,7 @@ namespace MASTEST
             Console.WriteLine(this.GetType().Name + " powiazania w roli " + nazwaRoli + " : ");
             foreach (Object obj in col)
             {
-                Console.WriteLine(" " + obj);
+                Console.WriteLine(" " + obj.ToString());
             }
         }
 
