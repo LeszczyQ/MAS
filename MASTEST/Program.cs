@@ -17,9 +17,9 @@ namespace MASTEST
 
             Adres a4 = new Adres("Kartoflana", "22/3", "02-654", "Warszawa");
             Klient k1 = new Klient("Adam", "Abacki", new List<string> { "791587887", "448448448" }, "hyc@cyc.pl", a4);
-            Serwisant.GetPremia();
-            Serwisant.ZwiększPremie(20.0);
-            Serwisant s1 = new Serwisant("Famian", "Fabacki", new List<string> { "791587887", "448448448" },160.0, "serwis@serwis.pl");
+            
+            Serwisant.Premia = 20.0;
+            Serwisant s1 = new Serwisant("Famian", "Fabacki", new List<string> { "791587887", "448448448" },160.0,"02-200" ,"serwis@serwis.pl");
             Console.WriteLine(s1.CzyObslugujeKod("02-000"));
             s1.DodajObslugiwanyKodPocztowy("02-000");
             Console.WriteLine(s1.CzyObslugujeKod("02-000"));

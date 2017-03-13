@@ -14,35 +14,38 @@ namespace MASTEST
         private double stawkaZaWizyte;
         private List<string> obslugiwaneKodyPocztowe = new List<string>();
 
-        public Serwisant(string imie, string nazwisko, List<string> numeryKontaktowe, double stawkaZaWizyte) : base(imie, nazwisko, numeryKontaktowe)
+        public Serwisant(string imie, string nazwisko, List<string> numeryKontaktowe, double stawkaZaWizyte, string kodPocztowy) : base(imie, nazwisko, numeryKontaktowe)
         {
             this.stawkaZaWizyte = stawkaZaWizyte;
+            obslugiwaneKodyPocztowe.Add(kodPocztowy);
         }
-        public Serwisant(string imie, string nazwisko, List<string> numeryKontaktowe, double stawkaZaWizyte, string adresEmail) : base(imie, nazwisko, numeryKontaktowe, adresEmail)
+        public Serwisant(string imie, string nazwisko, List<string> numeryKontaktowe, double stawkaZaWizyte, string kodPocztowy, string adresEmail) : base(imie, nazwisko, numeryKontaktowe, adresEmail)
         {
             this.stawkaZaWizyte = stawkaZaWizyte;
+            obslugiwaneKodyPocztowe.Add(kodPocztowy);
+
         }
 
-        public static double GetPremia()
+        public static double Premia
         {
-            return premia;
+            get { return premia; }
+            // set { premia = value; }
         }
-
-        public double GetStawkaZaWizyte()
+        public double StawkaZaWizyte
         {
-            return stawkaZaWizyte;
+            get { return stawkaZaWizyte; }
+            set { stawkaZaWizyte = value; }
         }
-
-        public void SetStawkaZaWizyte(double stawka)
+        public List<string> ObslugiwaneKodyPocztowe
         {
-            stawkaZaWizyte = stawka;
+            get { return obslugiwaneKodyPocztowe; }
+            set { obslugiwaneKodyPocztowe = value; }
         }
 
-        public static void ZwiększPremie(double kwota)// metoda klasowa
+        public static void ZwiekszPremie(double kwota)
         {
-            premia = premia + kwota;
+            premia += kwota;
         }
-
         public static void pokazEkstensje()
         {
             ObjectPlus.pokazEkstensje(typeof(Serwisant));
@@ -52,10 +55,6 @@ namespace MASTEST
             obslugiwaneKodyPocztowe.Add(kodPocztowy);
         }
 
-        public List<string> GetObsługiwaneKodyPocztowe()
-        {
-            return obslugiwaneKodyPocztowe;
-        }
 
         public string ObsługiwaneKodyToString()
         {

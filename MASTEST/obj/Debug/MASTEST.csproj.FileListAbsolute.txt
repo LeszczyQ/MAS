@@ -4,3 +4,6 @@ D:\Pulpit\NaukaWłasna\MASTEST\MASTEST\bin\Debug\MASTEST.pdb
 D:\Pulpit\NaukaWłasna\MASTEST\MASTEST\obj\Debug\MASTEST.csprojResolveAssemblyReference.cache
 D:\Pulpit\NaukaWłasna\MASTEST\MASTEST\obj\Debug\MASTEST.exe
 D:\Pulpit\NaukaWłasna\MASTEST\MASTEST\obj\Debug\MASTEST.pdb
+D:\Pulpit\MAS\MASTEST\MASTEST\bin\Debug\MASTEST.exe.config
+D:\Pulpit\MAS\MASTEST\MASTEST\obj\Debug\MASTEST.exe
+D:\Pulpit\MAS\MASTEST\MASTEST\obj\Debug\MASTEST.pdb
