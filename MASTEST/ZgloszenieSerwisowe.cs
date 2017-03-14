@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
 
+
     enum status
     {
         Aktywne,
@@ -19,6 +20,14 @@ namespace MASTEST
     [Serializable]
     class ZgloszenieSerwisowe : ObjectPlusPlus
     {
+      public enum Rola
+        {
+            zglaszanePrzez,
+            obslugiwanePrzez,
+            zawierajace,
+            dotyczace
+         }
+
         private static uint licznikZgloszen;
         private uint numerZgłoszenia;
         private DateTime dataZgloszenia;
@@ -94,8 +103,31 @@ namespace MASTEST
             return "Zgłoszenie : " + numerZgłoszenia + " z dnia " + DataToString(dataZgloszenia) + " status [" + status + "]";
         }
 
-        class NaprawaSerwisowa
+        public class NaprawaSerwisowa
         {
+            private enum statusNaprawy
+            {
+                aktywne,
+                wDrodzeDoKlienta,
+                zrealizowane,
+                problem
+            }
+            public enum Rola
+            {
+                realizowanaPrzez,
+                wRamach,
+
+            }
+
+            private static uint licznikZgloszen;
+            private uint numerNaprawy;
+            private DateTime dataRealizacji;
+            private DateTime dataZakonczenia;
+            private statusNaprawy status;
+
+
+
+
 
         }
 

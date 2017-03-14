@@ -9,6 +9,11 @@ namespace MASTEST
     [Serializable]
     class Agent : Osoba
     {
+        public enum Rola
+        {
+            obsluguje
+        }
+
         private DateTime dataZatrudnienia;
         private static double wynagrodzeniePodstawowe= 2000.0;
         private double podstawaDoPremii;

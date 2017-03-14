@@ -9,6 +9,11 @@ namespace MASTEST
     [Serializable]
     class Klient : Osoba
     {
+        enum Rola
+        {
+            zglasza
+        }
+
         private Adres adres; // atrybut złożony
 
 

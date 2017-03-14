@@ -9,6 +9,10 @@ namespace MASTEST
     [Serializable]
     class Serwisant : Osoba
     {
+        public enum Rola
+        {
+            realizuje
+        }
 
         private static double premia = 1200.0; // atrybut klasowy
         private double stawkaZaWizyte;
