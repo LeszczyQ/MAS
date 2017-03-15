@@ -26,9 +26,9 @@ namespace MASTEST
         {
             this.adres = adres;
         }
-        public static void pokazEkstensje()
+        public static void PokazEkstensje()
         {
-            ObjectPlus.pokazEkstensje(typeof(Klient));
+            ObjectPlus.PokazEkstensje(typeof(Klient));
         }
 
         override

@@ -32,7 +32,7 @@ namespace MASTEST
             ekstensja.Add(this);
         }
 
-        public static void zapiszEkstensje()
+        public static void ZapiszEkstensje()
         {
             FileStream stream = File.Create("ekstensje.data");
             var formatter = new BinaryFormatter();
@@ -40,7 +40,7 @@ namespace MASTEST
             stream.Close();
 
         }
-        public static void odczytajEkstensje()
+        public static void OdczytajEkstensje()
         {
             FileStream stream = File.OpenRead("ekstensje.data");
             var formatter = new BinaryFormatter();
@@ -49,7 +49,7 @@ namespace MASTEST
 
         }
 
-        public static void pokazEkstensje(Type klasa)
+        public static void PokazEkstensje(Type klasa)
         {
             List<Object> ekstensja = null;
             if (ObjectPlus.extensje.ContainsKey(klasa))

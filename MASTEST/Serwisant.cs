@@ -50,9 +50,9 @@ namespace MASTEST
         {
             premia += kwota;
         }
-        public static void pokazEkstensje()
+        public static void PokazEkstensje()
         {
-            ObjectPlus.pokazEkstensje(typeof(Serwisant));
+            ObjectPlus.PokazEkstensje(typeof(Serwisant));
         }
         public void DodajObslugiwanyKodPocztowy(string kodPocztowy)
         {

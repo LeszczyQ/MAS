@@ -22,7 +22,7 @@ namespace MASTEST
             
         }
 
-        private void dodajPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy, Object kwalifikator, int licznik)
+        private void DodajPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy, Object kwalifikator, int licznik)
         {
             Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
 
@@ -42,29 +42,29 @@ namespace MASTEST
             if (!powiazaniaObiektu.ContainsKey(kwalifikator))
             {
                 powiazaniaObiektu.Add(kwalifikator, obiektDocelowy);
-                obiektDocelowy.dodajPowiazanie(odwrotnaNazwaRoli, nazwaRoli, this, this, licznik - 1);
+                obiektDocelowy.DodajPowiazanie(odwrotnaNazwaRoli, nazwaRoli, this, this, licznik - 1);
             }
         }
-        public void dodajPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy, Object kwalifikator)
+        public void DodajPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy, Object kwalifikator)
         {
-            dodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektDocelowy, kwalifikator, 2);
+           DodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektDocelowy, kwalifikator, 2);
         }
-        public void dodajPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy)
+        public void DodajPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy)
         {
-            dodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektDocelowy, obiektDocelowy);
+            DodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektDocelowy, obiektDocelowy);
         }
 
-        public void dodajCzesc(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektCzesc)
+        public void DodajCzesc(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektCzesc)
         {
             if (wszystkieCzesci.Contains(obiektCzesc))
             {
                 throw new Exception("Ta czesc jest już powiazana z jakas caloscia!!!");
             }
-            dodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektCzesc);
+            DodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektCzesc);
             wszystkieCzesci.Add(obiektCzesc);
         }
 
-        public ObjectPlusPlus[] dajPowiazania(string nazwaRoli)
+        public ObjectPlusPlus[] DajPowiazania(string nazwaRoli)
         {
             Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
             if (!powiazania.ContainsKey(nazwaRoli))
@@ -76,7 +76,7 @@ namespace MASTEST
 
         }
 
-        public void wyswietlPowiazania(string nazwaRoli)
+        public void WyswietlPowiazania(string nazwaRoli)
         {
             Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
             if (!powiazania.ContainsKey(nazwaRoli))
@@ -94,7 +94,7 @@ namespace MASTEST
             }
         }
 
-        public ObjectPlusPlus dajPowiazanyObiekt(string nazwaRoli, Object kwalifikator)
+        public ObjectPlusPlus DajPowiazanyObiekt(string nazwaRoli, Object kwalifikator)
         {
             Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
             if (!powiazania.ContainsKey(nazwaRoli))

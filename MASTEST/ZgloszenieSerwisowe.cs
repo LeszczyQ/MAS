@@ -97,6 +97,11 @@ namespace MASTEST
             }
         }
 
+        public void PokazEkstensje()
+        {
+            ObjectPlus.PokazEkstensje(ZgloszenieSerwisowe);
+        }
+
         override 
         public string ToString()
         {
@@ -119,7 +124,7 @@ namespace MASTEST
 
             }
 
-            private static uint licznikZgloszen;
+            private static uint licznikZgloszen = 0;
             private uint numerNaprawy;
             private DateTime dataRealizacji;
             private DateTime dataZakonczenia;
