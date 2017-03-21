@@ -36,7 +36,7 @@ namespace MASTEST
             set { rozszerzenieGwarancji = value; }
         }
 
-        public Biznesowe(string numerSeryjny, DateTime dataZakupu, bool wsparcie24Na7, bool wsparcieOprogramowania, int okresGwarancji, int rozszerzenieGwarancji) : base(numerSeryjny, dataZakupu)
+        public Biznesowe(string model, DateTime dataZakupu, bool wsparcie24Na7, bool wsparcieOprogramowania, int okresGwarancji, int rozszerzenieGwarancji) : base(model, dataZakupu)
         {
             Wsparcie24Na7 = wsparcie24Na7;
             WsparcieOprogramowania = wsparcieOprogramowania;
@@ -46,8 +46,14 @@ namespace MASTEST
         override
         public DateTime DataZakonczeniaGwarancji()
         {
-            return DataZakupu.AddYears(OkresGwarancji+RozszerzenieGwarancji);
+            return DataZakupu.AddMonths(OkresGwarancji+RozszerzenieGwarancji);
         }
+
+        override
+        public string ToString()
+        {
+            return "Data Zakupu : ["+DataZakupu+"]Wsparcie 24/7- [" + Wsparcie24Na7 + "], Wsparcie oprogramowania- [" + WsparcieOprogramowania + "], Okres gwarancji podstawowej: " + OkresGwarancji + " M , rozszerzona o " + RozszerzenieGwarancji + " M."; 
+    }
 
     }
 }

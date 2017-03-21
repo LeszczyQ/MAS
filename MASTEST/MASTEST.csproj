@@ -48,6 +48,7 @@
     <Compile Include="Agent.cs" />
     <Compile Include="Biznesowe.cs" />
     <Compile Include="Klient.cs" />
+    <Compile Include="Konsumenckie.cs" />
     <Compile Include="ObjectPlus.cs" />
     <Compile Include="ObjectPlusPlus.cs" />
     <Compile Include="Osoba.cs" />
