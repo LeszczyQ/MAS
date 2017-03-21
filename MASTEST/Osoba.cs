@@ -11,23 +11,23 @@ namespace MASTEST
     {
         private string imie;// atrybut prosty
         private string nazwisko;
-        private List<string> numeryKontaktowe;//atrybut powtarzalny
+        private List<string> numeryKontaktowe = new List<string>();//atrybut powtarzalny
         private string adresEmail; //atrybut opcjonalny 
 
-        public Osoba(string imie, string nazwisko, List<string> numeryKontaktowe)
+        public Osoba(string imie, string nazwisko, string numer)
         {
             this.imie = imie;
             this.nazwisko = nazwisko;
-            this.numeryKontaktowe = numeryKontaktowe;
+            this.numeryKontaktowe.Add(numer);
             this.adresEmail = null;
 
         }
 
-        public Osoba(string imie, string nazwisko, List<string> numeryKontaktowe, string adresEmail)
+        public Osoba(string imie, string nazwisko, string numer, string adresEmail)
         {
             this.imie = imie;
             this.nazwisko = nazwisko;
-            this.numeryKontaktowe = numeryKontaktowe;
+            this.numeryKontaktowe.Add(numer);
             this.adresEmail = adresEmail;
         }
         public string GetImie()
@@ -61,9 +61,20 @@ namespace MASTEST
             this.nazwisko = nazwisko;
         }
 
-        public void SetNumeryKontaktowe(List<string> numeryKontaktowe)
+        public void DodajNumerKontaktowy(string numer)
         {
-            this.numeryKontaktowe = numeryKontaktowe;
+            if (numeryKontaktowe.Count > 2)
+                throw new Exception("Osoba może mieć przypisane maksymalnie do 3 numerów");
+            else
+                this.numeryKontaktowe.Add(numer);
+        }
+        public void EdytujNumeryKontaktowe(int pozycja0_2, string nowyNumer)
+        {
+            if (pozycja0_2 > 2)
+                throw new Exception("numery sa na pozycjach od 0 do 2");
+            else
+                numeryKontaktowe[pozycja0_2] = nowyNumer;
+
         }
         public void SetAdresEmail(string adresEmail)
         {
@@ -76,12 +87,12 @@ namespace MASTEST
             string tablicaNumerow = string.Join(", ", numeryKontaktowe.ToArray());
             if (adresEmail != null)
             {
-                return imie + " " + nazwisko + " " + tablicaNumerow +" "+ this.adresEmail;
+                return imie + " " + nazwisko + " " + tablicaNumerow + " " + this.adresEmail;
             }
             else
             {
                 return imie + " " + nazwisko + " " + tablicaNumerow + " brak adresu email";
             }
         }
-    } 
+    }
 }

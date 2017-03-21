@@ -18,12 +18,12 @@ namespace MASTEST
         private double stawkaZaWizyte;
         private List<string> obslugiwaneKodyPocztowe = new List<string>();
 
-        public Serwisant(string imie, string nazwisko, List<string> numeryKontaktowe, double stawkaZaWizyte, string kodPocztowy) : base(imie, nazwisko, numeryKontaktowe)
+        public Serwisant(string imie, string nazwisko, string numer, double stawkaZaWizyte, string kodPocztowy) : base(imie, nazwisko, numer)
         {
             this.stawkaZaWizyte = stawkaZaWizyte;
             obslugiwaneKodyPocztowe.Add(kodPocztowy);
         }
-        public Serwisant(string imie, string nazwisko, List<string> numeryKontaktowe, double stawkaZaWizyte, string kodPocztowy, string adresEmail) : base(imie, nazwisko, numeryKontaktowe, adresEmail)
+        public Serwisant(string imie, string nazwisko, string numer, double stawkaZaWizyte, string kodPocztowy, string adresEmail) : base(imie, nazwisko, numer, adresEmail)
         {
             this.stawkaZaWizyte = stawkaZaWizyte;
             obslugiwaneKodyPocztowe.Add(kodPocztowy);
@@ -50,10 +50,7 @@ namespace MASTEST
         {
             premia += kwota;
         }
-        public static void PokazEkstensje()
-        {
-            ObjectPlus.PokazEkstensje(typeof(Serwisant));
-        }
+        
         public void DodajObslugiwanyKodPocztowy(string kodPocztowy)
         {
             obslugiwaneKodyPocztowe.Add(kodPocztowy);

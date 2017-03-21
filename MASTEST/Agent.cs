@@ -18,12 +18,12 @@ namespace MASTEST
         private static double wynagrodzeniePodstawowe= 2000.0;
         private double podstawaDoPremii;
 
-        public Agent(string imie, string nazwisko, List<string> numeryKontaktowe, DateTime dataZatrudnienia):base(imie, nazwisko, numeryKontaktowe)
+        public Agent(string imie, string nazwisko, string numer, DateTime dataZatrudnienia):base(imie, nazwisko, numer)
         {
             this.dataZatrudnienia = dataZatrudnienia;
         }
 
-        public Agent(string imie, string nazwisko, List<string> numeryKontaktowe, string adresEmail, DateTime dataZatrudnienia) :base(imie, nazwisko,numeryKontaktowe,adresEmail)
+        public Agent(string imie, string nazwisko, string numer, string adresEmail, DateTime dataZatrudnienia) :base(imie, nazwisko, numer ,adresEmail)
         {
             this.dataZatrudnienia = dataZatrudnienia;
         }
@@ -66,7 +66,7 @@ namespace MASTEST
 
         public override string ToString()
         {
-            return base.ToString() + "Podstawa do premii : " + podstawaDoPremii + "\n";
+            return base.ToString() + " Podstawa do premii : " + podstawaDoPremii + "\n";
         }
 
     }

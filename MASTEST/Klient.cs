@@ -17,12 +17,12 @@ namespace MASTEST
         private Adres adres; // atrybut złożony
 
 
-        public Klient(string imie, string nazwisko, List<string> numeryKontaktowe, Adres adres):base(imie, nazwisko, numeryKontaktowe)
+        public Klient(string imie, string nazwisko, string numer, Adres adres):base(imie, nazwisko, numer)
         {
             this.adres = adres;
         }
 
-        public Klient(string imie, string nazwisko, List<string> numeryKontaktowe, string adresEmail, Adres adres):base(imie, nazwisko,numeryKontaktowe,adresEmail)
+        public Klient(string imie, string nazwisko, string numer, string adresEmail, Adres adres):base(imie, nazwisko,numer,adresEmail)
         {
             this.adres = adres;
         }
