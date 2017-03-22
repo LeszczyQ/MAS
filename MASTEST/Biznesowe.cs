@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    public class Biznesowe : Urzadzenie
+    public class Biznesowe : Klasa
     {
         private bool wsparcie24Na7;
         private bool wsparcieOprogramowania;
@@ -36,24 +36,25 @@ namespace MASTEST
             set { rozszerzenieGwarancji = value; }
         }
 
-        public Biznesowe(string model, DateTime dataZakupu, bool wsparcie24Na7, bool wsparcieOprogramowania, int okresGwarancji, int rozszerzenieGwarancji) : base(model, dataZakupu)
+        public Biznesowe(string model, DateTime dataZakupu, bool wsparcie24Na7, bool wsparcieOprogramowania, int okresGwarancji, int rozszerzenieGwarancji)
         {
             Wsparcie24Na7 = wsparcie24Na7;
             WsparcieOprogramowania = wsparcieOprogramowania;
             OkresGwarancji = okresGwarancji;
             RozszerzenieGwarancji = rozszerzenieGwarancji;
         }
+
         override
-        public DateTime DataZakonczeniaGwarancji()
+          public DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
         {
-            return DataZakupu.AddMonths(OkresGwarancji+RozszerzenieGwarancji);
+            return dataZakupu.AddMonths(OkresGwarancji + RozszerzenieGwarancji);
         }
 
         override
         public string ToString()
         {
-            return "Data Zakupu : ["+DataZakupu+"]Wsparcie 24/7- [" + Wsparcie24Na7 + "], Wsparcie oprogramowania- [" + WsparcieOprogramowania + "], Okres gwarancji podstawowej: " + OkresGwarancji + " M , rozszerzona o " + RozszerzenieGwarancji + " M."; 
-    }
+            return "Wsparcie 24/7- [" + Wsparcie24Na7 + "], Wsparcie oprogramowania- [" + WsparcieOprogramowania + "], Okres gwarancji podstawowej: " + OkresGwarancji + " M , rozszerzona o " + RozszerzenieGwarancji + " M.";
+        }
 
     }
 }

@@ -7,26 +7,27 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    class Konsumenckie: Urzadzenie
+    class Konsumenckie : Klasa
     {
-        private static int okresGwarancji=2;
+        private static int okresGwarancji = 24;
 
-        public Konsumenckie(string model, DateTime dataZakupu):base(model, dataZakupu) { }
+        public Konsumenckie() { }
 
-        public static void ZmienOkresGwarancji (int iloscMiesiecy)
+        public static void ZmienOkresGwarancji(int iloscMiesiecy)
         {
             okresGwarancji = iloscMiesiecy;
         }
+
         override
-        public DateTime DataZakonczeniaGwarancji()
+        public DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
         {
-            return DataZakupu.AddMonths(okresGwarancji);
+            return dataZakupu.AddMonths(okresGwarancji);
         }
 
         override
         public string ToString()
         {
-            return "Data Zakupu : ["+DataZakupu+"] Okres Gwarancji : " + okresGwarancji + " M";
+            return " Okres Gwarancji : " + okresGwarancji + " M";
         }
     }
 }

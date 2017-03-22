@@ -31,16 +31,18 @@ namespace MASTEST
         }
 
 
-        public Urzadzenie(string model, DateTime dataZakupu)
+        public Urzadzenie(string model, DateTime dataZakupu):base()
         {
             Model = model;
             DataZakupu = dataZakupu;
         }
 
         public abstract DateTime DataZakonczeniaGwarancji();
-        
-        
-        
+
+        public override string ToString()
+        {
+            return 
+        }
 
 
     }

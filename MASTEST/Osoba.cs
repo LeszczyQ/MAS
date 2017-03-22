@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    abstract class Osoba : ObjectPlusPlus
+    public abstract class Osoba : ObjectPlusPlus
     {
         private string imie;// atrybut prosty
         private string nazwisko;
         private List<string> numeryKontaktowe = new List<string>();//atrybut powtarzalny
         private string adresEmail; //atrybut opcjonalny 
 
-        public Osoba(string imie, string nazwisko, string numer)
+        public Osoba(string imie, string nazwisko, string numer):base()
         {
             this.imie = imie;
             this.nazwisko = nazwisko;
@@ -23,7 +23,7 @@ namespace MASTEST
 
         }
 
-        public Osoba(string imie, string nazwisko, string numer, string adresEmail)
+        public Osoba(string imie, string nazwisko, string numer, string adresEmail):base()
         {
             this.imie = imie;
             this.nazwisko = nazwisko;
