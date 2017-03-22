@@ -9,10 +9,7 @@ namespace MASTEST
     [Serializable]
     class Agent : Osoba
     {
-        public enum Rola
-        {
-            obsluguje
-        }
+        
 
         private DateTime dataZatrudnienia;
         private static double wynagrodzeniePodstawowe= 2000.0;
@@ -61,6 +58,14 @@ namespace MASTEST
 
             return przepracowaneDni * 0.001 * podstawaDoPremii;
 
+        }
+
+        public ZgloszenieSerwisowe UtworzZgloszenie(Klient klient, string opisUsterki, string diagnostyka)
+        {
+            ZgloszenieSerwisowe z = new ZgloszenieSerwisowe(opisUsterki, diagnostyka);
+            this.DodajPowiazanie("obsluguje", "obslugiwanePrzez", z);
+            klient.DodajPowiazanie("zglasza", "zglaszanePrzez", z);
+            return z;
         }
 
 

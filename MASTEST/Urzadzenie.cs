@@ -37,11 +37,10 @@ namespace MASTEST
             DataZakupu = dataZakupu;
         }
 
-        public abstract DateTime DataZakonczeniaGwarancji();
-
+      
         public override string ToString()
         {
-            return 
+            return "Model :" + Model + " Data zakupu : [" + DataZakupu + "]\n";
         }
 
 
