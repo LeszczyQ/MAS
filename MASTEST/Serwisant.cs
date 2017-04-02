@@ -33,7 +33,7 @@ namespace MASTEST
         public static double Premia
         {
             get { return premia; }
-            // set { premia = value; }
+            //set { premia = value; }
         }
         public double StawkaZaWizyte
         {

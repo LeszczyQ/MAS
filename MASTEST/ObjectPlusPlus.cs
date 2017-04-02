@@ -45,13 +45,18 @@ namespace MASTEST
                 obiektDocelowy.DodajPowiazanie(odwrotnaNazwaRoli, nazwaRoli, this, this, licznik - 1);
             }
         }
+       
+
         public void DodajPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy, Object kwalifikator)
         {
            DodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektDocelowy, kwalifikator, 2);
         }
-        public void DodajPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy)
+        public void DodajPowiazanie(ObjectPlusPlus obiektDocelowy)
         {
-            DodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektDocelowy, obiektDocelowy);
+            if (this.GetType().Equals(typeof(Agent)) && obiektDocelowy.GetType().Equals(typeof(ZgloszenieSerwisowe)))
+                DodajPowiazanie("obsluguje", "obslugiwanePrzez", obiektDocelowy, obiektDocelowy);
+            else
+                throw new Exception("działa");
         }
 
         public void DodajCzesc(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektCzesc)
@@ -60,7 +65,7 @@ namespace MASTEST
             {
                 throw new Exception("Ta czesc jest już powiazana z jakas caloscia!!!");
             }
-            DodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektCzesc);
+            DodajPowiazanie(obiektCzesc);
             wszystkieCzesci.Add(obiektCzesc);
         }
 
@@ -109,6 +114,24 @@ namespace MASTEST
 
             return powiazaniaObiektu[kwalifikator];
         }
+        public void UsunPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy)
+        {
+            Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
 
+            powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)this.powiazania[nazwaRoli];
+            powiazaniaObiektu.Remove(obiektDocelowy);
+
+            powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)obiektDocelowy.powiazania[odwrotnaNazwaRoli];
+            powiazaniaObiektu.Remove(this);
+        }
+        public void UsunObiekt()
+        {
+            if (this.GetType().Equals(typeof(Agent)))
+            {
+
+            }
+
+            
+        }
     }
 }

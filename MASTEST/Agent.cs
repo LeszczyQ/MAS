@@ -60,13 +60,13 @@ namespace MASTEST
 
         }
 
-        public ZgloszenieSerwisowe UtworzZgloszenie(Klient klient, string opisUsterki, string diagnostyka)
-        {
-            ZgloszenieSerwisowe z = new ZgloszenieSerwisowe(opisUsterki, diagnostyka);
-            this.DodajPowiazanie("obsluguje", "obslugiwanePrzez", z);
-            klient.DodajPowiazanie("zglasza", "zglaszanePrzez", z);
-            return z;
-        }
+        //public ZgloszenieSerwisowe UtworzZgloszenie(Klient klient, string opisUsterki, string diagnostyka)
+        //{
+        //    ZgloszenieSerwisowe z = new ZgloszenieSerwisowe(opisUsterki, diagnostyka);
+        //    this.DodajPowiazanie(z);
+        //    klient.DodajPowiazanie(z);
+        //    return z;
+        //}
 
 
         public override string ToString()

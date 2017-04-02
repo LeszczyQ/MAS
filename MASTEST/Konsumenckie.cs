@@ -18,14 +18,14 @@ namespace MASTEST
             okresGwarancji = iloscMiesiecy;
         }
 
-        override
-        public DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
+        
+        public override DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
         {
             return dataZakupu.AddMonths(okresGwarancji);
         }
 
-        override
-        public string ToString()
+        
+        public override string ToString()
         {
             return " Okres Gwarancji : " + okresGwarancji + " M";
         }

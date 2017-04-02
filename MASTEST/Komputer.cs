@@ -39,7 +39,7 @@ namespace MASTEST
 
         public override string ToString()
         {
-            return base.ToString();
+            return base.ToString()+ " złącza:" +zlacza.ToString() ;
         }
 
     }

@@ -13,6 +13,9 @@ namespace MASTEST
 
         }
 
-        public abstract DateTime DataZakonczeniaGwarancji(DateTime dataZakupu);
+        public virtual DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
+        {
+            return dataZakupu.AddYears(1);
+        }
     }
 }

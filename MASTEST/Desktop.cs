@@ -29,7 +29,8 @@ namespace MASTEST
 
         public Desktop(string model, DateTime dataZakupu, TYPOBUDOWY typ) : base(model,dataZakupu)
         {
-           
+            base();
+            typObudowy = typ;
         }
     }
 }

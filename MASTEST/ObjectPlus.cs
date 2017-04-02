@@ -32,6 +32,13 @@ namespace MASTEST
             ekstensja.Add(this);
         }
 
+        public void UsunZEkstensji()
+        {
+            List<Object> ekstensja = null;
+            ekstensja = (List<Object>)ObjectPlus.extensje[this.GetType()];
+            ekstensja.Remove(this);
+        }
+
         public static void ZapiszEkstensje()
         {
             FileStream stream = File.Create("ekstensje.data");

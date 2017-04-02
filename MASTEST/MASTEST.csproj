@@ -54,6 +54,8 @@
     <Compile Include="Klient.cs" />
     <Compile Include="Komputer.cs" />
     <Compile Include="Konsumenckie.cs" />
+    <Compile Include="Monitor.cs" />
+    <Compile Include="Notebook.cs" />
     <Compile Include="ObjectPlus.cs" />
     <Compile Include="ObjectPlusPlus.cs" />
     <Compile Include="Osoba.cs" />
