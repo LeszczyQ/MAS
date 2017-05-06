@@ -10,7 +10,7 @@ namespace MASTEST
 {
 
 
-    enum status
+    enum Status
     {
         Aktywne,
         Realizowane,
@@ -23,95 +23,39 @@ namespace MASTEST
     {
         public enum Rola
         {
-            zglaszanePrzez,
-            obslugiwanePrzez,
-            zawierajace,
-            dotyczace
+            ZglaszanePrzez,
+            ObslugiwanePrzez,
+            Zawierajace,
+            Dotyczace
         }
 
-        private static int licznikZgloszen;
-        private int numerZgloszenia;
-        private DateTime dataZgloszenia;
-        private DateTime? dataZakonczenia;
-        private string opisUsterki;
-        private string diagnostyka;
-        private status status;
+        
+        private static int LicznikZgloszen { get; set; }
+        public int NumerZgloszenia { get; set; }
+        public DateTime DataZgloszenia { get; set; }
+        public DateTime? DataZakonczenia { get; set; }
 
-        public static int LicznikZgloszen
-        {
-            get { return licznikZgloszen; }
-            set { licznikZgloszen = value; }
-        }
-        public int NumerZgloszenia
-        {
-            get { return numerZgloszenia; }
-            set { numerZgloszenia = value; }
-
-        }
-        public DateTime DataZgloszenia
-        {
-            get { return dataZgloszenia; }
-            private set { dataZgloszenia = value; }
-        }
-
-        public DateTime? DataZakonczenia
-        {
-            get { return dataZakonczenia; }
-            set { dataZakonczenia = value; }
-        }
-        public string OpisUsterki
-        {
-            get { return opisUsterki; }
-            private set { opisUsterki = value; }
-        }
-        public string Diagnostyka
-        {
-            get { return diagnostyka; }
-            private set { diagnostyka = value; }
-        }
-
-        public status Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
-
-        public ZgloszenieSerwisowe(string opisUsterki, string diagnostyka, int numer)
-        {
-
-            NumerZgloszenia = numer;
-            LicznikZgloszen++;
-            DataZgloszenia = DateTime.Now;
-            DataZakonczenia = null;
-            OpisUsterki = opisUsterki;
-            Diagnostyka = diagnostyka;
-            Status = status.Aktywne;
-        }
+        public string OpisUsterki { get; set; }
+        public string Diagnostyka { get; set; }
+        public Status Status { get; set; }
 
         public ZgloszenieSerwisowe(string opisUsterki, string diagnostyka)
         {
+            OdczytajLicznik();
             NumerZgloszenia = LicznikZgloszen;
             LicznikZgloszen++;
+            ZapiszLicznik();
             DataZgloszenia = DateTime.Now;
             DataZakonczenia = null;
             OpisUsterki = opisUsterki;
             Diagnostyka = diagnostyka;
-            Status = status.Aktywne;
+            Status = Status.Aktywne;
         }
 
         public string DataToString(DateTime? data)
         {
-            if (data.HasValue)
-            {
-                return String.Format("{0:dddd dd MMMM yyyy - HH:mm:ss }", data);
-            }
-            else
-            {
-                return "Zgłoszenie w trakcie realizacji";
-            }
+            return data.HasValue ? String.Format("{0:dddd dd MMMM yyyy - HH:mm:ss }", data) : "Zgłoszenie w trakcie realizacji";
         }
-
-
 
         override
         public string ToString()
@@ -119,81 +63,67 @@ namespace MASTEST
             return "Zgłoszenie : " + NumerZgloszenia + " z dnia " + DataToString(DataZgloszenia) + " status [" + Status + "]";
         }
 
-        public static void ZapiszLicznik()
+        private static void ZapiszLicznik()
         {
             FileStream stream = File.Create("licznik.data");
             var formatter = new BinaryFormatter();
             formatter.Serialize(stream, LicznikZgloszen);
             stream.Close();
-
         }
 
-        public static void OdczytajLicznik()
+        private static void OdczytajLicznik()
         {
             FileStream stream = File.OpenRead("licznik.data");
             var formatter = new BinaryFormatter();
             LicznikZgloszen = (int)formatter.Deserialize(stream);
             stream.Close();
-
         }
 
         [Serializable]
         private class NaprawaSerwisowa : ObjectPlusPlus
         {
-            private enum STATUS
+            public enum Status
             {
-                aktywne,
-                oczekiwanieNaCzesci,
-                czesciPobrane,
-                technikWDrodze,
-                zakonczone,
-                problem
+                Aktywne,
+                OczekiwanieNaCzesci,
+                CzesciPobrane,
+                TechnikWDrodze,
+                Zakonczone,
+                Problem
+            }
+            private static int LicznikNapraw { get; set; }
+            public int NumerNaprawy { get; set; }
+            public DateTime DataRealizacji { get; set; }
+            public DateTime? DataZakonczenia { get; set; }
+            public Status StatusNaprawy { get; set; }
 
-            }
-
-            private static int liczbaNapraw;
-            private int numerNaprawy;
-            private DateTime dataRealizacji;
-            private DateTime? dataZakonczenia;
-            private STATUS status;
-
-            private int NumerNaprawy
-            {
-                get { return numerNaprawy; }
-                set { numerNaprawy = value; }
-            }
-            private DateTime DataRealizacji
-            {
-                get { return dataRealizacji; }
-                set { dataRealizacji = value; }
-            }
-            private DateTime? DataZakonczenia
-            {
-                get { return dataZakonczenia; }
-                set { dataZakonczenia = value; }
-            }
-            private STATUS Status
-            {
-                get { return status; }
-                set { status = value; }
-            }
-
-            //konstruktor   par data = planowana data realizacji zgloszenia
             public NaprawaSerwisowa(DateTime data)
             {
+                OdczytajLicznik();
+                NumerNaprawy = LicznikNapraw;
+                LicznikNapraw++;
+                ZapiszLicznik();
                 DataRealizacji = data;
                 DataZakonczenia = null;
-                Status = STATUS.aktywne;
-
+                StatusNaprawy = Status.Aktywne;
             }
 
+            private static void ZapiszLicznikNapraw()
+            {
+                FileStream stream = File.Create("licznikNapraw.data");
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(stream, LicznikNapraw);
+                stream.Close();
+            }
 
-
+            private static void OdczytajLicznikNapraw()
+            {
+                FileStream stream = File.OpenRead("licznikNapraw.data");
+                var formatter = new BinaryFormatter();
+                LicznikNapraw = (int)formatter.Deserialize(stream);
+                stream.Close();
+            }
 
         }
-
-
     }
-
-
 }

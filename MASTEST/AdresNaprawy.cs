@@ -9,16 +9,12 @@ namespace MASTEST
     [Serializable]
     class AdresNaprawy : ObjectPlusPlus
     {
-        private Adres adresNaprawy;
-        private Adres AdresN
+       
+        private Adres AdresNaprawySerwisowej { get; set; }
+       
+        public AdresNaprawy(Adres adres)
         {
-            get { return adresNaprawy; }
-            set { adresNaprawy = value; }
-        }
-
-        public AdresNaprawy( Adres adres)
-        {
-            AdresN = adres;
+            AdresNaprawySerwisowej = adres;
         }
 
 

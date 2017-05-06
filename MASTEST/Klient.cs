@@ -11,30 +11,27 @@ namespace MASTEST
     {
         enum Rola
         {
-            zglasza
+            Zglasza
         }
 
-        private Adres adres; // atrybut złożony
+        private Adres AdresKlienta { get; set; } // atrybut złożony
 
 
         public Klient(string imie, string nazwisko, string numer, Adres adres):base(imie, nazwisko, numer)
         {
-            this.adres = adres;
+            AdresKlienta = adres;
         }
 
         public Klient(string imie, string nazwisko, string numer, string adresEmail, Adres adres):base(imie, nazwisko,numer,adresEmail)
         {
-            this.adres = adres;
-        }
-        public static void PokazEkstensje()
-        {
-            ObjectPlus.PokazEkstensje(typeof(Klient));
+            AdresKlienta = adres;
         }
 
+       
         override
         public string ToString()
         {
-            return base.ToString() +" "+ adres.ToString();
+            return base.ToString() +" "+ AdresKlienta.ToString();
         }
     }
 }

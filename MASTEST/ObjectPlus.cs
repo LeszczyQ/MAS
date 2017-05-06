@@ -45,8 +45,6 @@ namespace MASTEST
             var formatter = new BinaryFormatter();
             formatter.Serialize(stream, ObjectPlus.extensje);
             stream.Close();
-            ZgloszenieSerwisowe.ZapiszLicznik();
-
         }
         public static void OdczytajEkstensje()
         {
@@ -54,8 +52,6 @@ namespace MASTEST
             var formatter = new BinaryFormatter();
             ObjectPlus.extensje = (Hashtable)formatter.Deserialize(stream);
             stream.Close();
-            ZgloszenieSerwisowe.OdczytajLicznik();
-
         }
 
         public static void PokazEkstensje(Type klasa)
