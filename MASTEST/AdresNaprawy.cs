@@ -9,7 +9,10 @@ namespace MASTEST
     [Serializable]
     class AdresNaprawy : ObjectPlusPlus
     {
-       
+        public enum Rola
+        {
+            Realizowanej
+        }
         private Adres AdresNaprawySerwisowej { get; set; }
        
         public AdresNaprawy(Adres adres)

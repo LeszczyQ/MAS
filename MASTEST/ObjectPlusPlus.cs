@@ -30,6 +30,7 @@ namespace MASTEST
             {
                 return;
             }
+
             if (powiazania.ContainsKey(nazwaRoli))
             {
                 powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)powiazania[nazwaRoli];
@@ -39,11 +40,10 @@ namespace MASTEST
                 powiazaniaObiektu = new Dictionary<Object, ObjectPlusPlus>();
                 powiazania.Add(nazwaRoli, powiazaniaObiektu);
             }
-            if (!powiazaniaObiektu.ContainsKey(kwalifikator))
-            {
-                powiazaniaObiektu.Add(kwalifikator, obiektDocelowy);
-                obiektDocelowy.DodajPowiazanie(odwrotnaNazwaRoli, nazwaRoli, this, this, licznik - 1);
-            }
+
+            if (powiazaniaObiektu.ContainsKey(kwalifikator)) return;
+            powiazaniaObiektu.Add(kwalifikator, obiektDocelowy);
+            obiektDocelowy.DodajPowiazanie(odwrotnaNazwaRoli, nazwaRoli, this, this, licznik - 1);
         }
        
 
@@ -51,12 +51,10 @@ namespace MASTEST
         {
            DodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektDocelowy, kwalifikator, 2);
         }
-        public void DodajPowiazanie(ObjectPlusPlus obiektDocelowy)
+
+        public void DodajPowiazanie(String nazwaRoli, String odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy)
         {
-            if (this.GetType().Equals(typeof(Agent)) && obiektDocelowy.GetType().Equals(typeof(ZgloszenieSerwisowe)))
-                DodajPowiazanie("obsluguje", "obslugiwanePrzez", obiektDocelowy, obiektDocelowy);
-            else
-                throw new Exception("działa");
+            DodajPowiazanie(nazwaRoli, odwrotnaNazwaRoli, obiektDocelowy, obiektDocelowy);
         }
 
         public void DodajCzesc(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektCzesc)
@@ -65,33 +63,31 @@ namespace MASTEST
             {
                 throw new Exception("Ta czesc jest już powiazana z jakas caloscia!!!");
             }
-            DodajPowiazanie(obiektCzesc);
+            DodajPowiazanie(nazwaRoli,odwrotnaNazwaRoli,obiektCzesc);
             wszystkieCzesci.Add(obiektCzesc);
         }
 
         public ObjectPlusPlus[] DajPowiazania(string nazwaRoli)
         {
-            Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
             if (!powiazania.ContainsKey(nazwaRoli))
             {
                 throw new Exception("Brak powiazan dla roli " + nazwaRoli);
             }
-            powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)powiazania[nazwaRoli];
+            var powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)powiazania[nazwaRoli];
             return (ObjectPlusPlus[])powiazaniaObiektu.Values.ToArray(); // brak ToArray(new ObjectPlusPlus[0]);
 
         }
 
         public void WyswietlPowiazania(string nazwaRoli)
         {
-            Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
             if (!powiazania.ContainsKey(nazwaRoli))
             {
                 //brak powiazania dla tej roli
                 throw new Exception("Brak powiazania dla roli : " + nazwaRoli);
             }
-            powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)powiazania[nazwaRoli];
+            var powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)powiazania[nazwaRoli];
             List<ObjectPlusPlus> col = powiazaniaObiektu.Values.ToList();
-
+            Console.WriteLine("\n------------------------------------------\n");
             Console.WriteLine(this.GetType().Name + " powiazania w roli " + nazwaRoli + " : ");
             foreach (Object obj in col)
             {
@@ -101,12 +97,11 @@ namespace MASTEST
 
         public ObjectPlusPlus DajPowiazanyObiekt(string nazwaRoli, Object kwalifikator)
         {
-            Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
             if (!powiazania.ContainsKey(nazwaRoli))
             {
                 throw new Exception("Brak powiazan dla roli : " + nazwaRoli);
             }
-            powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)powiazania[nazwaRoli];
+            var powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)powiazania[nazwaRoli];
             if (!powiazaniaObiektu.ContainsKey(kwalifikator))
             {
                 throw new Exception("Brak powiazania dla kwalifikatora : " + kwalifikator);
@@ -116,9 +111,7 @@ namespace MASTEST
         }
         public void UsunPowiazanie(string nazwaRoli, string odwrotnaNazwaRoli, ObjectPlusPlus obiektDocelowy)
         {
-            Dictionary<Object, ObjectPlusPlus> powiazaniaObiektu;
-
-            powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)this.powiazania[nazwaRoli];
+            var powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)this.powiazania[nazwaRoli];
             powiazaniaObiektu.Remove(obiektDocelowy);
 
             powiazaniaObiektu = (Dictionary<Object, ObjectPlusPlus>)obiektDocelowy.powiazania[odwrotnaNazwaRoli];

@@ -9,7 +9,7 @@ namespace MASTEST
     [Serializable]
     class Klient : Osoba
     {
-        enum Rola
+       public enum Rola
         {
             Zglasza
         }

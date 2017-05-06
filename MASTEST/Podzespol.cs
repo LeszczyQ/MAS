@@ -9,6 +9,11 @@ namespace MASTEST
     [Serializable]
    public class Podzespol : ObjectPlusPlus
     {
+        public enum Rola
+        {
+            Uzyty,
+            WchodziWSklad
+        }
         public enum Typ
         {
             Pamiec, Procesor, PlytaGlowna, Zasilacz, Dysk, Grafika, KartaLAN, KartaWWAN, KartaWLAN, ServiceKit, Lampa, Przewod, Obudowa 

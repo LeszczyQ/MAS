@@ -10,6 +10,11 @@ namespace MASTEST
     [Serializable]
     class PodzespolUrzadzenie : ObjectPlusPlus
     {
+        public enum Rola
+        {
+            SkladaSie,
+            WchodziWSklad,
+        }
         public int Ilosc { get; set; }
 
         public PodzespolUrzadzenie(int ilosc)

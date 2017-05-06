@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace MASTEST
 {
-
-
     enum Status
     {
         Aktywne,
@@ -91,6 +89,14 @@ namespace MASTEST
                 Zakonczone,
                 Problem
             }
+            public enum Rola
+            {
+                RealizowanaPrzez,
+                PodAdresem,
+                WRamach,
+                Zuzyla
+            }
+
             private static int LicznikNapraw { get; set; }
             public int NumerNaprawy { get; set; }
             public DateTime DataRealizacji { get; set; }

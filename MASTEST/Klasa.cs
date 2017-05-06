@@ -9,6 +9,10 @@ namespace MASTEST
     [Serializable]
     public abstract class Klasa : ObjectPlusPlus
     {
+        public enum Rola
+        {
+            Urzadzenia
+        }
         protected Klasa() : base() { }
 
         public virtual DateTime DataZakonczeniaGwarancji(DateTime dataZakupu) // przesłaniana w Konsumenckie i biznesowe

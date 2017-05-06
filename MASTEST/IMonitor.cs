@@ -15,3 +15,4 @@ namespace MASTEST
         string RozdzielczoscMatrycy { get; set; }
 
     }
+}

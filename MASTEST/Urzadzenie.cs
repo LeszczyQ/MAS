@@ -9,6 +9,12 @@ namespace MASTEST
     [Serializable]
     public abstract class Urzadzenie : ObjectPlusPlus
     {
+        public enum Rola
+        {
+            SkladaSieZ,
+            ZgloszoneWRamach,
+            ZKlasy,
+        }
         public int NumerSeryjny { get; set; }
 
         public string Model { get; set; }
