@@ -9,50 +9,25 @@ namespace MASTEST
     [Serializable]
     public class Notebook : Komputer, IMonitor
     {
-        private bool wiDi;
-        private bool wiGig;
-        private double waga;
-        private bool wsparcieMST;
-        private bool dotykowy;
-        private bool lcd3D;
-        private double rozmiarMatrycy;
-        private string rozdzielczoscMatrycy;
+        public bool WiDi { get; set; }
+        public bool WiGig { get; set; }
+        public double Waga { get; set; }
+        public bool WsparcieMST { get; set; }
+        public bool Dotykowy { get; set; }
+        public bool Lcd3D { get; set; }
+        public double RozmiarMatrycy { get; set; }
+        public string RozdzielczoscMatrycy { get; set; }
 
-        public Notebook(string model, DateTime dataZakupu,bool wiDi, bool wiGig, double waga, bool wsparcieMST, bool dotykowy, bool lcd3D, string rozdzielczosc, double rozmiar) :base(model, dataZakupu)
+        public Notebook(string model, DateTime dataZakupu,bool wiDi, bool wiGig, double waga, bool wsparcieMST, bool dotykowy, bool lcd3D, string rozdzielczosc, double rozmiar, bool kontrolerRAID) :base(model, dataZakupu, kontrolerRAID)
         {
-            this.wiDi = wiDi;
-            this.wiGig = wiGig;
-            this.waga = waga;
-            this.wsparcieMST = wsparcieMST;
-            this.dotykowy = dotykowy;
-            this.lcd3D = lcd3D;
-            this.rozmiarMatrycy = rozmiar;
-            this.rozdzielczoscMatrycy = rozdzielczosc;
-        }
-
-        public bool Dotykowy()
-        {
-            return dotykowy;
-        }
-
-        public bool Lcd3D()
-        {
-            return lcd3D;
-        }
-
-        public string RozdzielczoscMatrycy()
-        {
-            return rozdzielczoscMatrycy;
-        }
-
-        public double RozmiarMatrycy()
-        {
-            return rozmiarMatrycy;
-        }
-
-        public bool WsparcieMST()
-        {
-            return wsparcieMST;
+            WiDi= wiDi;
+            WiGig = wiGig;
+            Waga = waga;
+            WsparcieMST = wsparcieMST;
+            Dotykowy = dotykowy;
+            Lcd3D = lcd3D;
+            RozmiarMatrycy = rozmiar;
+            RozdzielczoscMatrycy = rozdzielczosc;
         }
     }
 }

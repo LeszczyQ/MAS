@@ -9,27 +9,16 @@ namespace MASTEST
     [Serializable]
     public class Desktop : Komputer
     {
-      public enum TYPOBUDOWY
+        public enum TypObudowy
         {
-            TOWER,
-            MT,
-            DT,
-            SFF,
-            USFF,
-            MICRO,
+            TOWER, MT, DT, SFF, USFF, MICRO
         }
 
-        private TYPOBUDOWY typObudowy;
+        public TypObudowy Obudowa { get; set; }
 
-        public TYPOBUDOWY TypObudowy
+        public Desktop(string model, DateTime dataZakupu, TypObudowy typ, bool kontrolerRAID) : base(model, dataZakupu, kontrolerRAID)
         {
-            get { return typObudowy; }
-            private set { typObudowy = value;}
-        }
-
-        public Desktop(string model, DateTime dataZakupu, TYPOBUDOWY typ) : base(model,dataZakupu)
-        {
-            typObudowy = typ;
+            Obudowa = typ;
         }
     }
 }

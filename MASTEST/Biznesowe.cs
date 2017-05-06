@@ -9,32 +9,11 @@ namespace MASTEST
     [Serializable]
     public class Biznesowe : Klasa
     {
-        private bool wsparcie24Na7;
-        private bool wsparcieOprogramowania;
-        private int okresGwarancji;
-        private int rozszerzenieGwarancji;
-
-
-        public bool Wsparcie24Na7
-        {
-            get { return wsparcie24Na7; }
-            set { wsparcie24Na7 = value; }
-        }
-        private bool WsparcieOprogramowania
-        {
-            get { return wsparcieOprogramowania; }
-            set { wsparcieOprogramowania = value; }
-        }
-        private int OkresGwarancji
-        {
-            get { return okresGwarancji; }
-            set { okresGwarancji = value; }
-        }
-        private int RozszerzenieGwarancji
-        {
-            get { return rozszerzenieGwarancji; }
-            set { rozszerzenieGwarancji = value; }
-        }
+        public bool Wsparcie24Na7 { get; set; }
+        private bool WsparcieOprogramowania { get; set; }
+        private int OkresGwarancji { get; set; }
+        private int RozszerzenieGwarancji { get; set;}
+        
 
         public Biznesowe(string model, DateTime dataZakupu, bool wsparcie24Na7, bool wsparcieOprogramowania, int okresGwarancji, int rozszerzenieGwarancji)
         {
@@ -44,14 +23,14 @@ namespace MASTEST
             RozszerzenieGwarancji = rozszerzenieGwarancji;
         }
 
-        override
-          public DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
+
+        public override DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
         {
             return dataZakupu.AddMonths(OkresGwarancji + RozszerzenieGwarancji);
         }
 
-        override
-        public string ToString()
+        
+        public override string ToString()
         {
             return "Wsparcie 24/7- [" + Wsparcie24Na7 + "], Wsparcie oprogramowania- [" + WsparcieOprogramowania + "], Okres gwarancji podstawowej: " + OkresGwarancji + " M , rozszerzona o " + RozszerzenieGwarancji + " M.";
         }

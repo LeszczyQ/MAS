@@ -6,49 +6,23 @@ using System.Threading.Tasks;
 
 namespace MASTEST
 {
+    [Serializable]
     public class Monitor : IO, IMonitor
     {
 
-        private bool wsparcieMST;
-        private bool dotykowy;
-        private bool lcd3D;
-        private double rozmiarMatrycy;
-        private string rozdzielczoscMatrycy;
+        public bool WsparcieMST { get; set; }
+        public bool Dotykowy { get; set; }
+        public bool Lcd3D { get; set; }
+        public double RozmiarMatrycy { get; set; }
+        public string RozdzielczoscMatrycy { get; set; }
 
         public Monitor(string model, DateTime dataZakupu, bool wsparcieMST, bool dotykowy, bool lcd3D, string rozdzielczosc, double rozmiar) : base(model, dataZakupu)
         {
-
-            this.wsparcieMST = wsparcieMST;
-            this.dotykowy = dotykowy;
-            this.lcd3D = lcd3D;
-            this.rozmiarMatrycy = rozmiar;
-            this.rozdzielczoscMatrycy = rozdzielczosc;
+            WsparcieMST = wsparcieMST;
+            Dotykowy = dotykowy;
+            Lcd3D = lcd3D;
+            RozmiarMatrycy = rozmiar;
+            RozdzielczoscMatrycy = rozdzielczosc;
         }
-        public bool Dotykowy()
-        {
-            return dotykowy;
-        }
-
-        public bool Lcd3D()
-        {
-            return lcd3D;
-        }
-
-        public string RozdzielczoscMatrycy()
-        {
-            return rozdzielczoscMatrycy;
-        }
-
-        public double RozmiarMatrycy()
-        {
-            return rozmiarMatrycy;
-        }
-
-        public bool WsparcieMST()
-        {
-            return wsparcieMST;
-        }
-
-       
     }
 }

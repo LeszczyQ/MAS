@@ -9,8 +9,6 @@ namespace MASTEST
     [Serializable]
     class Agent : Osoba
     {
-
-
         private DateTime DataZatrudnienia { get; set; }
         private static double _podstawa = 2000.0;
 

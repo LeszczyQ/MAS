@@ -9,25 +9,19 @@ namespace MASTEST
     [Serializable]
     class Konsumenckie : Klasa
     {
-        private static int okresGwarancji = 24;
-
+        private static int _okresGwarancji = 24;
         public Konsumenckie() { }
-
         public static void ZmienOkresGwarancji(int iloscMiesiecy)
         {
-            okresGwarancji = iloscMiesiecy;
+            _okresGwarancji = iloscMiesiecy;
         }
-
-        
         public override DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
         {
-            return dataZakupu.AddMonths(okresGwarancji);
+            return dataZakupu.AddMonths(_okresGwarancji);
         }
-
-        
         public override string ToString()
         {
-            return " Okres Gwarancji : " + okresGwarancji + " M";
+            return " Okres Gwarancji : " + _okresGwarancji + " M";
         }
     }
 }

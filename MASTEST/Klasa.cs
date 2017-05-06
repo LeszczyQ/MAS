@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace MASTEST
 {
+    [Serializable]
     public abstract class Klasa : ObjectPlusPlus
     {
-        public Klasa() : base()
-        {
-
-        }
+        protected Klasa() : base() { }
 
         public virtual DateTime DataZakonczeniaGwarancji(DateTime dataZakupu) // przesłaniana w Konsumenckie i biznesowe
         {

@@ -8,12 +8,10 @@ namespace MASTEST
 {
     interface IMonitor
     {
-        bool WsparcieMST();
-        bool Dotykowy();
-        double RozmiarMatrycy();
-        string RozdzielczoscMatrycy();
-        bool Lcd3D();
-
+        bool WsparcieMST { get; set; }
+        bool Dotykowy { get; set; }
+        bool Lcd3D { get; set; }
+        double RozmiarMatrycy { get; set; }
+        string RozdzielczoscMatrycy { get; set; }
 
     }
-}

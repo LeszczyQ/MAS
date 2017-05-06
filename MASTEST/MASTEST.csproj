@@ -48,6 +48,7 @@
     <Compile Include="Agent.cs" />
     <Compile Include="Biznesowe.cs" />
     <Compile Include="Desktop.cs" />
+    <Compile Include="Drukarka.cs" />
     <Compile Include="IMonitor.cs" />
     <Compile Include="IO.cs" />
     <Compile Include="Klasa.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="PodzespolNaprawa.cs" />
     <Compile Include="PodzespolUrzadzenie.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Projektor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serwisant.cs" />
     <Compile Include="Urzadzenie.cs" />

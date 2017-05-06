@@ -9,28 +9,21 @@ namespace MASTEST
     [Serializable]
     public abstract class IO : Urzadzenie
     {
-        public enum ZLACZA
+        public enum TypyZlacz
         {
-            HDMI,
-            DP,
-            USB2_0,
-            USB3_0,
-            MiniDP,
-            MiniHDMI,
-            VGA,
-            DVI,
-            Ethernet,
+            HDMI, DP, USB2_0, USB3_0, ThunderBolt, MiniDP, MiniHDMI, VGA, DVI, RJ_45, RS232, Jack3_5
         }
 
-        private Dictionary<ZLACZA, int> zlacza;
+        private Dictionary<TypyZlacz, int> Zlacza { get; set; }
 
-        public IO(string model, DateTime dataZakupu) : base(model,dataZakupu){
-
+        protected IO(string model, DateTime dataZakupu) : base(model, dataZakupu)
+        {
+            Zlacza = new Dictionary<TypyZlacz, int>();
         }
 
-        public void DodajZlacze(IO.ZLACZA typ, int ilosc)
+        public void DodajZlacze(TypyZlacz typ, int ilosc)
         {
-            zlacza.Add(typ, ilosc);
+            Zlacza.Add(typ, ilosc);
         }
 
     }

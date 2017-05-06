@@ -9,37 +9,27 @@ namespace MASTEST
    [Serializable]
     public abstract class Komputer : Urzadzenie
     {
-        public enum ZLACZA
+        public enum TypyZlacz
         {
-            HDMI,
-            DP,
-            USB2_0,
-            USB3_0,
-            ThunderBolt,
-            MiniDP,
-            MiniHDMI,
-            VGA,
-            DVI,
-            Ethernet,
-            RS232,
-            Jack3_5,
+            HDMI,DP,USB2_0,USB3_0,ThunderBolt,MiniDP,MiniHDMI,VGA,DVI,RJ_45,RS232,Jack3_5,
         }
 
+        private Dictionary<TypyZlacz,int> Zlacza { get; set; }
+        public bool Raid { get; set; }
 
-        private Dictionary<ZLACZA,int> zlacza;
-        private bool raid;
-
-        public Komputer(string model, DateTime dataZakupu) : base(model, dataZakupu) {
+        protected Komputer(string model, DateTime dataZakupu, bool kontrolerRAID) : base(model, dataZakupu) {
+            Zlacza= new Dictionary<TypyZlacz, int>();
+            Raid = kontrolerRAID;
         }
 
-        public void DodajZlacze(Komputer.ZLACZA typ, int ilosc)
+        public void DodajZlacze(TypyZlacz typ, int ilosc)
         {
-            zlacza.Add(typ, ilosc);
+            Zlacza.Add(typ, ilosc);
         }
 
         public override string ToString()
         {
-            return base.ToString()+ " złącza:" +zlacza.ToString() ;
+            return base.ToString()+ " złącza:" +Zlacza.ToString() ;
         }
 
     }
