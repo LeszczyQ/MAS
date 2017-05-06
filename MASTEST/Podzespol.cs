@@ -6,55 +6,32 @@ using System.Threading.Tasks;
 
 namespace MASTEST
 {
-    class Podzespol
+    [Serializable]
+   public class Podzespol : ObjectPlusPlus
     {
-        private enum TYP
+        public enum Typ
         {
-            pamiec, procesor, plytaGlowna, zasilacz, dysk, grafika, kartaLAN, kartaWWAN, kartaWLAN, serviceKit, lampa, przewod, obudowa 
-
-        }
-        private string
-            kodPodzespolu,
-            nazwa,
-            producent,
-            opis;
-        private TYP typ;
-        private double cena;
-
-        public string KodPodzespolu
-        {
-            get { return kodPodzespolu; }
-            private set { kodPodzespolu = value; }
+            Pamiec, Procesor, PlytaGlowna, Zasilacz, Dysk, Grafika, KartaLAN, KartaWWAN, KartaWLAN, ServiceKit, Lampa, Przewod, Obudowa 
         }
 
-        private TYP Typ
-        {
-            get { return typ; }
-            set { typ = value; }
-        }
+        public string KodPodzespolu { get; set; }
 
-        public string Nazwa
-        {
-            get { return nazwa; }
-            private set { nazwa = value; }
-        }
-        public string Producent
-        {
-            get { return producent; }
-            private set { producent = value; }
-        }
-        public string Opis
-        {
-            get { return opis; }
-            private set { opis = value; }
-        }
-        public double Cena
-        {
-            get { return cena; }
-            private set { cena = value; }
-        }
+        public Typ TypPodzespolu { get; set; }
 
-        public Podzespol(string kodPodzespolu, string nazwa, string producent, string opis, double cena) { }
+        public string Nazwa { get; set; }
+        public string Producent { get; set; }
+        public string Opis { get; set; }
+        public double Cena { get; set; }
+
+        public Podzespol(string kodPodzespolu,Typ typPodzespolu, string nazwa, string producent, string opis, double cena)
+        {
+            KodPodzespolu = kodPodzespolu;
+            TypPodzespolu = typPodzespolu;
+            Nazwa = nazwa;
+            Producent = producent;
+            Opis = opis;
+            Cena = cena;
+        }
 
     }
 }
