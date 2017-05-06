@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,73 +12,55 @@ namespace MASTEST
     {
         public enum Rola
         {
-            realizuje
+            Realizuje
         }
 
-        private static double premia = 1200.0; // atrybut klasowy
-        private double stawkaZaWizyte;
-        private List<string> obslugiwaneKodyPocztowe = new List<string>();
+        private static double _podstawa = 1200.0;
+
+        public static double Podstawa  // atrybut klasowy
+        {
+            get { return _podstawa; }
+            set { _podstawa = value; }
+        }
+
+        public double StawkaZaWizyte { get; set; }
+     
+        public List<string> ObslugiwaneKodyPocztowe { get; set; }
+
 
         public Serwisant(string imie, string nazwisko, string numer, double stawkaZaWizyte, string kodPocztowy) : base(imie, nazwisko, numer)
         {
-            this.stawkaZaWizyte = stawkaZaWizyte;
-            obslugiwaneKodyPocztowe.Add(kodPocztowy);
+            StawkaZaWizyte= stawkaZaWizyte;
+            ObslugiwaneKodyPocztowe = new List<string>() {kodPocztowy};
         }
+
         public Serwisant(string imie, string nazwisko, string numer, double stawkaZaWizyte, string kodPocztowy, string adresEmail) : base(imie, nazwisko, numer, adresEmail)
         {
-            this.stawkaZaWizyte = stawkaZaWizyte;
-            obslugiwaneKodyPocztowe.Add(kodPocztowy);
-
+            StawkaZaWizyte = stawkaZaWizyte;
+            ObslugiwaneKodyPocztowe = new List<string>() { kodPocztowy };
         }
 
-        public static double Premia
-        {
-            get { return premia; }
-            //set { premia = value; }
-        }
-        public double StawkaZaWizyte
-        {
-            get { return stawkaZaWizyte; }
-            set { stawkaZaWizyte = value; }
-        }
-        public List<string> ObslugiwaneKodyPocztowe
-        {
-            get { return obslugiwaneKodyPocztowe; }
-            set { obslugiwaneKodyPocztowe = value; }
-        }
-
-        public static void ZwiekszPremie(double kwota)
-        {
-            premia += kwota;
-        }
-        
         public void DodajObslugiwanyKodPocztowy(string kodPocztowy)
         {
-            obslugiwaneKodyPocztowe.Add(kodPocztowy);
+            ObslugiwaneKodyPocztowe.Add(kodPocztowy);
         }
 
 
         public string ObsługiwaneKodyToString()
         {
-            if (obslugiwaneKodyPocztowe != null)
-                return string.Join("; ", obslugiwaneKodyPocztowe);
+            if (ObslugiwaneKodyPocztowe != null)
+                return string.Join("; ", ObslugiwaneKodyPocztowe);
             else return "brak ";
         }
+
         public bool CzyObslugujeKod(string kodPocztowy)
         {
-            if (obslugiwaneKodyPocztowe != null)
-                return obslugiwaneKodyPocztowe.Contains(kodPocztowy);
-            else return false;
-
+            return ObslugiwaneKodyPocztowe != null && ObslugiwaneKodyPocztowe.Contains(kodPocztowy);
         }
-
-
-
-
 
         public override string ToString()
         {
-            return base.ToString() + "\nObsługiwane kody pocztowe : \n" + ObsługiwaneKodyToString() + "\n premia :" + premia + "\n";
+            return base.ToString() + "\nObsługiwane kody pocztowe : \n" + ObsługiwaneKodyToString() + "\nPodstawa :" + Podstawa + "\n";
         }
     }
 }

@@ -13,32 +13,30 @@ namespace MASTEST
         private string Nazwisko { get; set; }
         private List<string> NumeryKontaktowe { get; set; } //atrybut powtarzalny
 
+        private string _adresEmail;
         private string AdresEmail //atrybut opcjonalny 
         {
             get
             {
-                return AdresEmail ?? "brak adresu email";
+                return _adresEmail ?? "brak adresu email";
             }
-            set
-            {
-                AdresEmail = value;
-            }
+            set { _adresEmail = value; }
         }
 
-        public Osoba(string imie, string nazwisko, string numer) : base()
+        protected Osoba(string imie, string nazwisko, string numer) : base()
         {
             Imie = imie;
             Nazwisko = nazwisko;
-            NumeryKontaktowe.Add(numer);
+            NumeryKontaktowe = new List<string> {numer};
             AdresEmail = null;
 
         }
 
-        public Osoba(string imie, string nazwisko, string numer, string adresEmail) : base() //Przeciążenie 
+        protected Osoba(string imie, string nazwisko, string numer, string adresEmail) : base() //Przeciążenie 
         {
             Imie = imie;
             Nazwisko = nazwisko;
-            NumeryKontaktowe.Add(numer);
+            NumeryKontaktowe = new List<string> { numer };
             AdresEmail = adresEmail;
         }
 
