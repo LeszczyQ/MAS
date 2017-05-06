@@ -9,40 +9,21 @@ namespace MASTEST
     [Serializable]
     public abstract class Urzadzenie : ObjectPlusPlus
     {
-        private int numerSeryjny;
-            private string model;
-        private DateTime dataZakupu;
+        public int NumerSeryjny { get; set; }
 
-        public int NumerSeryjny
-        {
-            get { return numerSeryjny; }
-            private set { numerSeryjny = value; }
-        }
-        public string Model
-        {
-            get { return model; }
-            set { model = value; }
-        }
+        public string Model { get; set; }
 
-        public DateTime DataZakupu
-        {
-            get { return dataZakupu; }
-            set { dataZakupu = value; }
-        }
+        public DateTime DataZakupu { get; set; }
 
-
-        public Urzadzenie(string model, DateTime dataZakupu):base()
+        protected Urzadzenie(string model, DateTime dataZakupu):base()
         {
             Model = model;
             DataZakupu = dataZakupu;
         }
 
-      
         public override string ToString()
         {
-            return "Model :" + Model + " Data zakupu : [" + DataZakupu + "]\n";
+            return "\nNumer seryjny: "+NumerSeryjny+"\nModel :" + Model + "\nData zakupu : [" + DataZakupu + "]\n";
         }
-
-
     }
 }
