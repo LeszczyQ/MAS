@@ -9,76 +9,61 @@ namespace MASTEST
     [Serializable]
     class Agent : Osoba
     {
+
+
+        private DateTime DataZatrudnienia { get; set; }
+        private static double _podstawa = 2000.0;
+
+        private static double Podstawa
+        {
+            get { return _podstawa; }
+            set { _podstawa = value; }
+        }
+
+        public double PodstawaDoPremii => WyliczPodstaweDoPremii(); //atrybut wyliczalny
+
+        public Agent(string imie, string nazwisko, string numer, DateTime dataZatrudnienia) : base(imie, nazwisko, numer)
+        {
+            DataZatrudnienia = dataZatrudnienia;
+        }
+
+        public Agent(string imie, string nazwisko, string numer, string adresEmail, DateTime dataZatrudnienia) : base(imie, nazwisko, numer, adresEmail)
+        {
+            DataZatrudnienia = dataZatrudnienia;
+        }
+
         
-
-        private DateTime dataZatrudnienia;
-        private static double wynagrodzeniePodstawowe= 2000.0;
-        private double podstawaDoPremii;
-
-        public double PodstawaDoPremii
-        {
-            get { return WyliczPodstaweDoPremii(); }
-            private set { }
-
-        }
-
-        public Agent(string imie, string nazwisko, string numer, DateTime dataZatrudnienia):base(imie, nazwisko, numer)
-        {
-            this.dataZatrudnienia = dataZatrudnienia;
-        }
-
-        public Agent(string imie, string nazwisko, string numer, string adresEmail, DateTime dataZatrudnienia) :base(imie, nazwisko, numer ,adresEmail)
-        {
-            this.dataZatrudnienia = dataZatrudnienia;
-        }
-
-        public double GetPodstawaDoPremii()
-        {
-            this.WyliczPodstaweDoPremii();
-            return this.podstawaDoPremii;
-        }
-        public static double GetWynagrodzeniePodstawowe()
-        {
-            return wynagrodzeniePodstawowe;
-        }
         private double WyliczPodstaweDoPremii()
         {
-            int staz = (DateTime.Now- dataZatrudnienia).Days;
-            Console.Write("\nliczbaPrzepracowanychDni : " + staz);
+            var staz = (DateTime.Now - DataZatrudnienia).Days;
             if (staz <= 90)
             {
                 return 0.0;
-            }else if (staz > 90 && staz <= 365)
+            }
+            else if (staz > 90 && staz <= 365)
             {
                 return 500.0;
             }
-            else
+            else if (staz > 365 && staz <= 730)
             {
-                return 1500.0;
+                return 1000.0;
             }
-                }
+            else return 1500;
+           
+        }
 
 
         public double WyliczPremie()
         {
-            int przepracowaneDni = (DateTime.Now- dataZatrudnienia ).Days;
+            var przepracowaneDni = (DateTime.Now - DataZatrudnienia).Days;
 
             return przepracowaneDni * 0.001 * PodstawaDoPremii;
 
         }
 
-        //public ZgloszenieSerwisowe UtworzZgloszenie(Klient klient, string opisUsterki, string diagnostyka)
-        //{
-        //    ZgloszenieSerwisowe z = new ZgloszenieSerwisowe(opisUsterki, diagnostyka);
-        //    this.DodajPowiazanie(z);
-        //    klient.DodajPowiazanie(z);
-        //    return z;
-        //}
-
-
         public override string ToString()
         {
-            return base.ToString() + " Podstawa do premii : " + podstawaDoPremii + "\n";
+            return base.ToString() + " \nPodstawa: " + Podstawa + "\nPodstawa do premii: "+PodstawaDoPremii+"\nPremia :"+WyliczPremie();
         }
 
     }
