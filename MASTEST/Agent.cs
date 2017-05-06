@@ -15,6 +15,13 @@ namespace MASTEST
         private static double wynagrodzeniePodstawowe= 2000.0;
         private double podstawaDoPremii;
 
+        public double PodstawaDoPremii
+        {
+            get { return WyliczPodstaweDoPremii(); }
+            private set { }
+
+        }
+
         public Agent(string imie, string nazwisko, string numer, DateTime dataZatrudnienia):base(imie, nazwisko, numer)
         {
             this.dataZatrudnienia = dataZatrudnienia;
@@ -34,20 +41,20 @@ namespace MASTEST
         {
             return wynagrodzeniePodstawowe;
         }
-        public void WyliczPodstaweDoPremii()
+        private double WyliczPodstaweDoPremii()
         {
             int staz = (DateTime.Now- dataZatrudnienia).Days;
             Console.Write("\nliczbaPrzepracowanychDni : " + staz);
             if (staz <= 90)
             {
-                this.podstawaDoPremii = 0;
+                return 0.0;
             }else if (staz > 90 && staz <= 365)
             {
-                this.podstawaDoPremii = 500;
+                return 500.0;
             }
             else
             {
-                this.podstawaDoPremii = 1500;
+                return 1500.0;
             }
                 }
 
@@ -56,7 +63,7 @@ namespace MASTEST
         {
             int przepracowaneDni = (DateTime.Now- dataZatrudnienia ).Days;
 
-            return przepracowaneDni * 0.001 * podstawaDoPremii;
+            return przepracowaneDni * 0.001 * PodstawaDoPremii;
 
         }
 

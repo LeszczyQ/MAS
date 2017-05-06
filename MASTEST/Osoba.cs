@@ -9,90 +9,62 @@ namespace MASTEST
     [Serializable]
     public abstract class Osoba : ObjectPlusPlus
     {
-        private string imie;// atrybut prosty
-        private string nazwisko;
-        private List<string> numeryKontaktowe = new List<string>();//atrybut powtarzalny
-        private string adresEmail; //atrybut opcjonalny 
+        private string Imie { get; set; } // atrybut prosty
+        private string Nazwisko { get; set; }
+        private List<string> NumeryKontaktowe { get; set; } //atrybut powtarzalny
 
-        public Osoba(string imie, string nazwisko, string numer):base()
+        private string AdresEmail //atrybut opcjonalny 
         {
-            this.imie = imie;
-            this.nazwisko = nazwisko;
-            this.numeryKontaktowe.Add(numer);
-            this.adresEmail = null;
-
-        }
-
-        public Osoba(string imie, string nazwisko, string numer, string adresEmail):base()
-        {
-            this.imie = imie;
-            this.nazwisko = nazwisko;
-            this.numeryKontaktowe.Add(numer);
-            this.adresEmail = adresEmail;
-        }
-        public string GetImie()
-        {
-            return this.imie;
-        }
-        public string GetNazwisko()
-        {
-            return this.nazwisko;
-        }
-
-        public List<string> GetNumeryKontaktowe()
-        {
-            return this.numeryKontaktowe;
-        }
-        public string getAdresEmail()
-        {
-            if (this.adresEmail == null)
+            get
             {
-                return "brak adresu email";
+                return AdresEmail ?? "brak adresu email";
             }
-            return this.adresEmail;
+            set
+            {
+                AdresEmail = value;
+            }
         }
 
-        public void SetImie(string imie)
+        public Osoba(string imie, string nazwisko, string numer) : base()
         {
-            this.imie = imie;
+            Imie = imie;
+            Nazwisko = nazwisko;
+            NumeryKontaktowe.Add(numer);
+            AdresEmail = null;
+
         }
-        public void SetNazwisko(string nazwisko)
+
+        public Osoba(string imie, string nazwisko, string numer, string adresEmail) : base() //Przeciążenie 
         {
-            this.nazwisko = nazwisko;
+            Imie = imie;
+            Nazwisko = nazwisko;
+            NumeryKontaktowe.Add(numer);
+            AdresEmail = adresEmail;
         }
+
 
         public void DodajNumerKontaktowy(string numer)
         {
-            if (numeryKontaktowe.Count > 2)
-                throw new Exception("Osoba może mieć przypisane maksymalnie do 3 numerów");
+            if (NumeryKontaktowe.Count > 2)
+                throw new Exception("Osoba może mić przypisane maksymalnie do 3 numerów");
             else
-                this.numeryKontaktowe.Add(numer);
+                NumeryKontaktowe.Add(numer);
         }
-        public void EdytujNumeryKontaktowe(int pozycja0_2, string nowyNumer)
+
+        public void EdytujNumeryKontaktowe(int pozycja02, string nowyNumer)
         {
-            if (pozycja0_2 > 2)
+            if (pozycja02 > 2)
                 throw new Exception("numery sa na pozycjach od 0 do 2");
             else
-                numeryKontaktowe[pozycja0_2] = nowyNumer;
-
-        }
-        public void SetAdresEmail(string adresEmail)
-        {
-            this.adresEmail = adresEmail;
+                NumeryKontaktowe[pozycja02] = nowyNumer;
         }
 
+       
         override
             public string ToString()
         {
-            string tablicaNumerow = string.Join(", ", numeryKontaktowe.ToArray());
-            if (adresEmail != null)
-            {
-                return imie + " " + nazwisko + " " + tablicaNumerow + " " + this.adresEmail;
-            }
-            else
-            {
-                return imie + " " + nazwisko + " " + tablicaNumerow + " brak adresu email";
-            }
+            var tablicaNumerow = string.Join(", ", NumeryKontaktowe.ToArray());
+            return "\n" + Imie + " " + Nazwisko + " " + tablicaNumerow + " " + AdresEmail;
         }
     }
 }

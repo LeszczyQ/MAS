@@ -13,7 +13,7 @@ namespace MASTEST
 
         }
 
-        public virtual DateTime DataZakonczeniaGwarancji(DateTime dataZakupu)
+        public virtual DateTime DataZakonczeniaGwarancji(DateTime dataZakupu) // przesłaniana w Konsumenckie i biznesowe
         {
             return dataZakupu.AddYears(1);
         }

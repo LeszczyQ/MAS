@@ -10,6 +10,7 @@ namespace MASTEST
     {
         static void Main(string[] args)
         {
+            ObjectPlus.OdczytajEkstensje();
 
             Agent a1 = new Agent("Damian", "Dabacki","123456789", DateTime.Now);
             Agent a2 = new Agent("Marcin", "Mamacki", "123456789", DateTime.Now);
@@ -19,18 +20,10 @@ namespace MASTEST
 
 
             ObjectPlus.PokazEkstensje(typeof(Agent));
-            a1.UsunZEkstensji();
-            a2.UsunZEkstensji();
-            ObjectPlus.PokazEkstensje(typeof(Agent));
 
+            ObjectPlus.PokazEkstensje(typeof(Klient));
 
-
-
-
-
-
-            //ObjectPlus.PokazEkstensje(typeof(ZgloszenieSerwisowe));
-            // ObjectPlus.ZapiszEkstensje();
+            ObjectPlus.ZapiszEkstensje();
             Console.Read();
         }
 
