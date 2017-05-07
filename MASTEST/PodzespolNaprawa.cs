@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    class PodzespolNaprawa : ObjectPlusPlus
+    public class PodzespolNaprawa : ObjectPlus
     {
-        public enum Rola
-        {
-            Uzyty,
-            Uzyla,
-        }
-        public int Ilosc { get; set; }
+       
+        private Podzespol _uzyty { get; set; }
+        private ZgloszenieSerwisowe.NaprawaSerwisowa _zuzyla { get; set; }
+        private int Ilosc { get; set; }
 
        public PodzespolNaprawa(int ilosc)
         {

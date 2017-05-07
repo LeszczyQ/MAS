@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,23 +8,19 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    class Agent : Osoba
+    public class Agent : Osoba
     {
-        public enum Rola
-        {
-            Obsluguje
-        }
-
         private DateTime DataZatrudnienia { get; set; }
         private static double _podstawa = 2000.0;
-
+        private double PodstawaDoPremii => WyliczPodstaweDoPremii(); //atrybut wyliczalny
         private static double Podstawa
         {
             get { return _podstawa; }
             set { _podstawa = value; }
         }
+        private List<ZgloszenieSerwisowe> _obsluguje = new List<ZgloszenieSerwisowe>();
 
-        public double PodstawaDoPremii => WyliczPodstaweDoPremii(); //atrybut wyliczalny
+
 
         public Agent(string imie, string nazwisko, string numer, DateTime dataZatrudnienia) : base(imie, nazwisko, numer)
         {
@@ -54,6 +51,24 @@ namespace MASTEST
             else return 1500;
            
         }
+
+
+        public void UtworzZgloszenie(string opisUsterki, string diagnostyka, Klient klient, Urzadzenie urzadzenie)
+        {
+            var zgloszenie = new ZgloszenieSerwisowe(opisUsterki, diagnostyka);
+            // dodanie powiązań Agent<->ZgloszenieSerwisowe
+            _obsluguje.Add(zgloszenie);
+            zgloszenie._obslugiwanePrzez = this;
+
+            // dodanie powiązań ZgloszenieSerwisowe<->Klient
+            zgloszenie._dotyczace = urzadzenie;
+            urzadzenie._zgloszoneWRamach.Add(zgloszenie.NumerZgloszenia, zgloszenie);
+
+            //dodanie powiązań Klient<->ZgłoszenieSerwisowe
+            zgloszenie._zglaszanePrzez = klient;
+            klient._zglasza.Add(zgloszenie);
+        }
+
 
 
         public double WyliczPremie()

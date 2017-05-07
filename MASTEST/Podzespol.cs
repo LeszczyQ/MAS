@@ -7,26 +7,26 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-   public class Podzespol : ObjectPlusPlus
+   public class Podzespol : ObjectPlus
     {
-        public enum Rola
-        {
-            Uzyty,
-            WchodziWSklad
-        }
+        
         public enum Typ
         {
             Pamiec, Procesor, PlytaGlowna, Zasilacz, Dysk, Grafika, KartaLAN, KartaWWAN, KartaWLAN, ServiceKit, Lampa, Przewod, Obudowa 
         }
 
-        public string KodPodzespolu { get; set; }
+        //asocjacja z atrybutem
+        private List<PodzespolUrzadzenie> _wchodziWSklad = new List<PodzespolUrzadzenie>();
 
-        public Typ TypPodzespolu { get; set; }
+        //asocjacja z atrybutem
+        private List<PodzespolNaprawa> _uzyty = new List<PodzespolNaprawa>();
 
-        public string Nazwa { get; set; }
-        public string Producent { get; set; }
-        public string Opis { get; set; }
-        public double Cena { get; set; }
+        private string KodPodzespolu { get; set; }
+        private Typ TypPodzespolu { get; set; }
+        private string Nazwa { get; set; }
+        private string Producent { get; set; }
+        private string Opis { get; set; }
+        private double Cena { get; set; }
 
         public Podzespol(string kodPodzespolu,Typ typPodzespolu, string nazwa, string producent, string opis, double cena)
         {

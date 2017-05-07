@@ -14,7 +14,7 @@ namespace MASTEST
             TOWER, MT, DT, SFF, USFF, MICRO
         }
 
-        public TypObudowy Obudowa { get; set; }
+        private TypObudowy Obudowa { get; set; }
 
         public Desktop(string model, DateTime dataZakupu, TypObudowy typ, bool kontrolerRAID) : base(model, dataZakupu, kontrolerRAID)
         {

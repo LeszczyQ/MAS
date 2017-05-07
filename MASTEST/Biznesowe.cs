@@ -9,7 +9,7 @@ namespace MASTEST
     [Serializable]
     public class Biznesowe : Klasa
     {
-        public bool Wsparcie24Na7 { get; set; }
+        private bool Wsparcie24Na7 { get; set; }
         private bool WsparcieOprogramowania { get; set; }
         private int OkresGwarancji { get; set; }
         private int RozszerzenieGwarancji { get; set;}

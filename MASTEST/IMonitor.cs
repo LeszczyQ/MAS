@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MASTEST
 {
-    interface IMonitor
+    public interface IMonitor
     {
         bool WsparcieMST { get; set; }
         bool Dotykowy { get; set; }

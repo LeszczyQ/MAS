@@ -11,12 +11,12 @@ namespace MASTEST
     [Serializable]
     public class Drukarka : IO
     {
-        public string RozdzielczoscWydruku { get; set; }
-        public bool Kolor { get; set; }
-        public bool Skaner { get; set; }
-        public bool Sieciowa { get; set; }
-        public bool Fax { get; set; }
-        public string ZywotnoscFusera { get; set; }
+        private string RozdzielczoscWydruku { get; set; }
+        private bool Kolor { get; set; }
+        private bool Skaner { get; set; }
+        private bool Sieciowa { get; set; }
+        private bool Fax { get; set; }
+        private string ZywotnoscFusera { get; set; }
 
         public Drukarka(string model, DateTime dataZakupu, string rozdzielczoscWydruku, bool kolor, bool skaner,
             bool sieciowa, bool fax, string zywotnoscFusera) : base(model, dataZakupu)

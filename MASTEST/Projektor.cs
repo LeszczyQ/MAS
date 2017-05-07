@@ -10,12 +10,12 @@ namespace MASTEST
     [Serializable]
     public class Projektor : IO
     {
-        public string MaxRozmiarObrazu { get; set; }
-        public string RozdzielczoscMatrycy { get; set; }
-        public bool Obraz3D { get; set; }
-        public string Jasnosc { get; set; }
-        public string ZywotnoscLampy { get; set; }
-        public string TypLampy { get; set; }
+        private string MaxRozmiarObrazu { get; set; }
+        private string RozdzielczoscMatrycy { get; set; }
+        private bool Obraz3D { get; set; }
+        private string Jasnosc { get; set; }
+        private string ZywotnoscLampy { get; set; }
+        private string TypLampy { get; set; }
 
         public Projektor(string model, DateTime dataZakupu, string maxRozmiarObrazu, string rozdzielczoscMatrycy,
             bool obraz3D, string jasnosc, string zywotnoscLampy, string typLampy) : base(model, dataZakupu)

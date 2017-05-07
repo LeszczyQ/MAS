@@ -15,7 +15,7 @@ namespace MASTEST
         }
 
         private Dictionary<TypyZlacz,int> Zlacza { get; set; }
-        public bool Raid { get; set; }
+        private bool Raid { get; set; }
 
         protected Komputer(string model, DateTime dataZakupu, bool kontrolerRAID) : base(model, dataZakupu) {
             Zlacza= new Dictionary<TypyZlacz, int>();

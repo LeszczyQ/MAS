@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    public abstract class Klasa : ObjectPlusPlus
+    public abstract class Klasa : ObjectPlus
     {
-        public enum Rola
-        {
-            Urzadzenia
-        }
+
+        //asocjacja binarna
+        private Urzadzenie _urzadzenia { get; set; }
+
         protected Klasa() : base() { }
 
         public virtual DateTime DataZakonczeniaGwarancji(DateTime dataZakupu) // przesłaniana w Konsumenckie i biznesowe

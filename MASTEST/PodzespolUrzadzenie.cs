@@ -8,14 +8,14 @@ namespace MASTEST
 {
 
     [Serializable]
-    class PodzespolUrzadzenie : ObjectPlusPlus
+    public class PodzespolUrzadzenie : ObjectPlus
     {
-        public enum Rola
-        {
-            SkladaSie,
-            WchodziWSklad,
-        }
-        public int Ilosc { get; set; }
+
+        // asocjacja z atrybutem
+        private Urzadzenie _skladaSieZ { get; set; }
+        private Podzespol _wchodziWsklad { get; set; }
+
+        private int Ilosc { get; set; }
 
         public PodzespolUrzadzenie(int ilosc)
         {

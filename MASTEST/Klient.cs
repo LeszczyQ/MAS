@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    class Klient : Osoba
+    public class Klient : Osoba
     {
-       public enum Rola
-        {
-            Zglasza
-        }
+        private List<ZgloszenieSerwisowe> _zglasza= new List<ZgloszenieSerwisowe>();
 
         private Adres AdresKlienta { get; set; } // atrybut złożony
 

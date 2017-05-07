@@ -21,10 +21,11 @@ namespace MASTEST
             //Klient k2 = new Klient("Marcin", "Mabacki", "512532525", new Adres("nowa", "15/5", "02-554", "Warszawa"));
             ZgloszenieSerwisowe z1 = new ZgloszenieSerwisowe("cssdsds", "efefefefef");
 
-            a1.DodajPowiazanie(Agent.Rola.Obsluguje.ToString(), ZgloszenieSerwisowe.Rola.ObslugiwanePrzez.ToString(), z1);
+
             a1.WyswietlPowiazania(Agent.Rola.Obsluguje.ToString());
             z1.WyswietlPowiazania(ZgloszenieSerwisowe.Rola.ObslugiwanePrzez.ToString());
 
+           
             ObjectPlus.PokazEkstensje(typeof(Serwisant));
             ObjectPlus.PokazEkstensje(typeof(Agent));
             ObjectPlus.PokazEkstensje(typeof(ZgloszenieSerwisowe));

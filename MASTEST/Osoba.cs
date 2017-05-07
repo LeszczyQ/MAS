@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    public abstract class Osoba : ObjectPlusPlus
+    public abstract class Osoba : ObjectPlus
     {
         private string Imie { get; set; } // atrybut prosty
         private string Nazwisko { get; set; }

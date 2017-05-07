@@ -9,9 +9,9 @@ namespace MASTEST
     [Serializable]
     public class Notebook : Komputer, IMonitor
     {
-        public bool WiDi { get; set; }
-        public bool WiGig { get; set; }
-        public double Waga { get; set; }
+        private bool WiDi { get; set; }
+        private bool WiGig { get; set; }
+        private double Waga { get; set; }
         public bool WsparcieMST { get; set; }
         public bool Dotykowy { get; set; }
         public bool Lcd3D { get; set; }

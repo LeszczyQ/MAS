@@ -10,22 +10,20 @@ namespace MASTEST
     [Serializable]
     class Serwisant : Osoba
     {
-        public enum Rola
-        {
-            Realizuje
-        }
+        
+        private List<ZgloszenieSerwisowe.NaprawaSerwisowa> _realizuje = new List<ZgloszenieSerwisowe.NaprawaSerwisowa>();
 
         private static double _podstawa = 1200.0;
 
-        public static double Podstawa  // atrybut klasowy
+        private static double Podstawa  // atrybut klasowy
         {
             get { return _podstawa; }
             set { _podstawa = value; }
         }
 
-        public double StawkaZaWizyte { get; set; }
-     
-        public List<string> ObslugiwaneKodyPocztowe { get; set; }
+        private double StawkaZaWizyte { get; set; }
+
+        private List<string> ObslugiwaneKodyPocztowe { get; set; }
 
 
         public Serwisant(string imie, string nazwisko, string numer, double stawkaZaWizyte, string kodPocztowy) : base(imie, nazwisko, numer)

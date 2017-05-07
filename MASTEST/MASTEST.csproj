@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adres.cs" />
-    <Compile Include="AdresNaprawy.cs" />
     <Compile Include="Agent.cs" />
     <Compile Include="Biznesowe.cs" />
     <Compile Include="Desktop.cs" />

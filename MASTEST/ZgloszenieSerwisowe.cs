@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MASTEST
 {
-    enum Status
+    public enum Status
     {
         Aktywne,
         Realizowane,
@@ -17,17 +17,15 @@ namespace MASTEST
     }
 
     [Serializable]
-    class ZgloszenieSerwisowe : ObjectPlusPlus
+    public class ZgloszenieSerwisowe : ObjectPlus
     {
-        public enum Rola
-        {
-            ZglaszanePrzez,
-            ObslugiwanePrzez,
-            Zawierajace,
-            Dotyczace
-        }
+   
+        public Agent _obslugiwanePrzez { get; set; }
+        public Klient _zglaszanePrzez { get; set; }
+        public Urzadzenie _dotyczace { get; set; }
 
-        
+        private List<NaprawaSerwisowa> _zawierajace = new List<NaprawaSerwisowa>();
+
         private static int LicznikZgloszen { get; set; }
         public int NumerZgloszenia { get; set; }
         public DateTime DataZgloszenia { get; set; }
@@ -36,6 +34,7 @@ namespace MASTEST
         public string OpisUsterki { get; set; }
         public string Diagnostyka { get; set; }
         public Status Status { get; set; }
+
 
         public ZgloszenieSerwisowe(string opisUsterki, string diagnostyka)
         {
@@ -78,7 +77,7 @@ namespace MASTEST
         }
 
         [Serializable]
-        private class NaprawaSerwisowa : ObjectPlusPlus
+        internal class NaprawaSerwisowa : ObjectPlus
         {
             public enum Status
             {
@@ -89,21 +88,20 @@ namespace MASTEST
                 Zakonczone,
                 Problem
             }
-            public enum Rola
-            {
-                RealizowanaPrzez,
-                PodAdresem,
-                WRamach,
-                Zuzyla
-            }
 
+            // asocjacja z atrybutem
+            private List<PodzespolNaprawa> _zuzyla = new List<PodzespolNaprawa>();
+
+            private Serwisant _realizowanaPrzez { get; set; }
+            private ZgloszenieSerwisowe _wRamach { get; set; }
             private static int LicznikNapraw { get; set; }
             public int NumerNaprawy { get; set; }
             public DateTime DataRealizacji { get; set; }
             public DateTime? DataZakonczenia { get; set; }
             public Status StatusNaprawy { get; set; }
 
-            public NaprawaSerwisowa(DateTime data)
+            // kompozycja - warunek 2 - brak mozliwosci utworzenia czesci bez całości
+            private NaprawaSerwisowa(DateTime data)
             {
                 OdczytajLicznik();
                 NumerNaprawy = LicznikNapraw;

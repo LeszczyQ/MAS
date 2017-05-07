@@ -7,17 +7,21 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    public abstract class Urzadzenie : ObjectPlusPlus
+    public abstract class Urzadzenie : ObjectPlus
     {
-        public enum Rola
-        {
-            SkladaSieZ,
-            ZgloszoneWRamach,
-            ZKlasy,
-        }
-        public int NumerSeryjny { get; set; }
 
-        public string Model { get; set; }
+        // asocjacja kwalifikowana, kwalifikator = NumerZgloszenia, wartosc = ZgloszenieSerwisowe
+        private Dictionary<int,ZgloszenieSerwisowe> _zgloszoneWRamach = new Dictionary<int, ZgloszenieSerwisowe>();
+
+        // asocjacja binarna
+        private Klasa _zKlasy { get; set; }
+
+        //asocjacja z atrybutem
+        private List<PodzespolUrzadzenie> _skladaSieZ = new List<PodzespolUrzadzenie>();
+
+        private int NumerSeryjny { get; set; }
+
+        private string Model { get; set; }
 
         public DateTime DataZakupu { get; set; }
 
