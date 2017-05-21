@@ -38,5 +38,16 @@ namespace MASTEST
             Cena = cena;
         }
 
+        // asocjacja z atrybutem
+        public void PowiazZUrzadzeniem(PodzespolUrzadzenie podurz)
+        {
+            _wchodziWSklad.Add(podurz);
+        }
+
+        public void UsunPowiazaniaZNaprawa(PodzespolNaprawa podurz)
+        {
+            _uzyty.Remove(podurz);
+        }
+
     }
 }

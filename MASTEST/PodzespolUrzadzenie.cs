@@ -21,5 +21,12 @@ namespace MASTEST
         {
             Ilosc = ilosc;
         }
+
+        // asocjacja z atrybutem
+        public void DodajPodzespolDoUrzadzenia(Podzespol podzespol, Urzadzenie urzadzenie)
+        {
+            _skladaSieZ = urzadzenie;
+            _wchodziWsklad = podzespol;
+        }
     }
 }

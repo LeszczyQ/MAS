@@ -31,6 +31,35 @@ namespace MASTEST
             DataZakupu = dataZakupu;
         }
 
+        public void PrzypiszZgloszenie(ZgloszenieSerwisowe zgloszenie)
+        {
+            _zgloszoneWRamach.Add(zgloszenie.GetNumerZgloszenia(),zgloszenie);
+        }
+        public void UsunPowiazanieZeZgloszeniem(ZgloszenieSerwisowe zgloszenie)
+        {
+            _zgloszoneWRamach.Remove(zgloszenie.GetNumerZgloszenia());
+        }
+
+
+        //asocjacja z atrybutem
+        public void DodajPodzespol(Podzespol podzespol, int ilosc)
+        {
+           var pu = new PodzespolUrzadzenie(ilosc);   
+           pu.DodajPodzespolDoUrzadzenia(podzespol, this); 
+           _skladaSieZ.Add(pu);
+           podzespol.PowiazZUrzadzeniem(pu);
+        }
+
+        //asocjacja Kwalifikowana
+        public ZgloszenieSerwisowe DajZgloszenieSerwisowe(int numerZgloszenia)
+        {
+            if (_zgloszoneWRamach.ContainsKey(numerZgloszenia))
+            {
+                return _zgloszoneWRamach[numerZgloszenia];
+            }
+           else throw new Exception("Brak takiego zgloszenia serwisowego");
+        }    
+
         public override string ToString()
         {
             return "\nNumer seryjny: "+NumerSeryjny+"\nModel :" + Model + "\nData zakupu : [" + DataZakupu + "]\n";

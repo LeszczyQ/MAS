@@ -24,7 +24,14 @@ namespace MASTEST
             AdresKlienta = adres;
         }
 
-       
+        public void PrzypiszZgloszenie(ZgloszenieSerwisowe zgloszenie)
+        {
+            _zglasza.Add(zgloszenie);
+        }
+        public void UsunPowiazanieZeZgloszeniem(ZgloszenieSerwisowe zgloszenie)
+        {
+            _zglasza.Remove(zgloszenie);
+        }
         override
         public string ToString()
         {

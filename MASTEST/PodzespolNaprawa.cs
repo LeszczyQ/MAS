@@ -11,12 +11,19 @@ namespace MASTEST
     {
        
         private Podzespol _uzyty { get; set; }
-        private ZgloszenieSerwisowe.NaprawaSerwisowa _zuzyla { get; set; }
+        private NaprawaSerwisowa _zuzyla { get; set; }
         private int Ilosc { get; set; }
 
        public PodzespolNaprawa(int ilosc)
         {
             Ilosc = ilosc;
+        }
+
+        public void UsunPodzespolNaprawa()
+        {
+            _uzyty.UsunPowiazaniaZNaprawa(this);
+            ObjectPlus.ZwrocEkstensje(typeof(PodzespolNaprawa)).Remove(this);
+
         }
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace MASTEST
 {
     [Serializable]
-    class Serwisant : Osoba
+    public class Serwisant : Osoba
     {
         
-        private List<ZgloszenieSerwisowe.NaprawaSerwisowa> _realizuje = new List<ZgloszenieSerwisowe.NaprawaSerwisowa>();
+        private List<NaprawaSerwisowa> _realizuje = new List<NaprawaSerwisowa>();
 
         private static double _podstawa = 1200.0;
 
@@ -38,6 +38,23 @@ namespace MASTEST
             ObslugiwaneKodyPocztowe = new List<string>() { kodPocztowy };
         }
 
+        public void PrzypiszDoNaprawy(NaprawaSerwisowa naprawa)
+        {
+            _realizuje.Add(naprawa);
+        }
+
+        public void UsunPowiazanieNaprawa(NaprawaSerwisowa naprawa)
+        {
+            if (_realizuje.Contains(naprawa))
+            {
+                _realizuje.Remove(naprawa);
+            }
+            else
+            {
+                throw new Exception("Ten serwisant nie realizuje tego zgłoszenia");
+            }
+        }
+
         public void DodajObslugiwanyKodPocztowy(string kodPocztowy)
         {
             ObslugiwaneKodyPocztowe.Add(kodPocztowy);
@@ -55,7 +72,7 @@ namespace MASTEST
         {
             return ObslugiwaneKodyPocztowe != null && ObslugiwaneKodyPocztowe.Contains(kodPocztowy);
         }
-
+        
         public override string ToString()
         {
             return base.ToString() + "\nObsługiwane kody pocztowe : \n" + ObsługiwaneKodyToString() + "\nPodstawa :" + Podstawa + "\n";

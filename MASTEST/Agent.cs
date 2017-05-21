@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace MASTEST
         }
         private List<ZgloszenieSerwisowe> _obsluguje = new List<ZgloszenieSerwisowe>();
 
-
+        
 
         public Agent(string imie, string nazwisko, string numer, DateTime dataZatrudnienia) : base(imie, nazwisko, numer)
         {
@@ -52,24 +53,28 @@ namespace MASTEST
            
         }
 
+        public void UsunPowiazanieZeZgloszeniem(ZgloszenieSerwisowe zgloszenie)
+        {
+            _obsluguje.Remove(zgloszenie);
+        }
 
-        public void UtworzZgloszenie(string opisUsterki, string diagnostyka, Klient klient, Urzadzenie urzadzenie)
+        public ZgloszenieSerwisowe UtworzZgloszenie(string opisUsterki, string diagnostyka, Klient klient, Urzadzenie urzadzenie)
         {
             var zgloszenie = new ZgloszenieSerwisowe(opisUsterki, diagnostyka);
             // dodanie powiązań Agent<->ZgloszenieSerwisowe
             _obsluguje.Add(zgloszenie);
-            zgloszenie._obslugiwanePrzez = this;
+            zgloszenie.PrzypiszAgenta(this);
 
             // dodanie powiązań ZgloszenieSerwisowe<->Klient
-            zgloszenie._dotyczace = urzadzenie;
-            urzadzenie._zgloszoneWRamach.Add(zgloszenie.NumerZgloszenia, zgloszenie);
+            zgloszenie.PrzypiszUrzadzenie(urzadzenie);
+            urzadzenie.PrzypiszZgloszenie(zgloszenie);
 
             //dodanie powiązań Klient<->ZgłoszenieSerwisowe
-            zgloszenie._zglaszanePrzez = klient;
-            klient._zglasza.Add(zgloszenie);
+            zgloszenie.PrzypiszKlienta(klient);
+            klient.PrzypiszZgloszenie(zgloszenie);
+
+            return zgloszenie;
         }
-
-
 
         public double WyliczPremie()
         {
